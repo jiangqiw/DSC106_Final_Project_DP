@@ -41,7 +41,7 @@
     {#if index === 4}
         {#each points as point, i}
         <circle cx={point.x} cy={point.y} r="4"
-            class:point{point.isTransparent}
+            class:point_transparent={point.isTransparent}
             class:point={point.isBlue} 
             class:point_red={point.isRed}
             class:point_blue_dead={point.isBlueDead}
@@ -65,15 +65,15 @@
     }
     .point_blue_dead {
         fill: black;
-        animattion: turnBlueBlack 1s forwards;
+        animation: turnBlueBlack 1s forwards;
     }
     .point_red_dead {
         fill: black;
-        animattion: turnRedBlack 1s forwards;
+        animation: turnRedBlack 1s forwards;
     }
     .point_transparent {
         fill: black;
-        animattion: turnTransparent 1s forwards;
+        animation: turnTransparent 1s forwards;
     }
 
 
