@@ -26,7 +26,7 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          2.704351, 52.309700
+          -2.50, 52.3
         ]
       },
       "properties": {
@@ -38,7 +38,7 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          3.0221, 51.2
+          -1.52, 50.0
         ]
       },
       "properties": {
@@ -50,7 +50,7 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -8.2943, 53.8503
+          -8.2943, 53.5
         ]
       },
       "properties": {
@@ -62,31 +62,19 @@
     "geometry": {
       "type": "Point",
       "coordinates": [
-          -76.006, 40.7128
+          -55, 38.7128
       ]
     },
     "properties": {
       "city": "<-- New York"
     }
   },
-  {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -2.1427, 52.3755
-        ]
-      },
-      "properties": {
-        "city": "Plymouth"
-      }
-    },
     {
       "type": "Feature",
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -52.5, 41.5
+          -39, 45.5
         ]
       },
       "properties": {

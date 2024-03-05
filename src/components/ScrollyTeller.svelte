@@ -6,6 +6,7 @@
   import GenderPointsPage from "./gender_points_page.svelte";
   import Pclass_1Page from "./passenger_class1_points_page.svelte";
   import { fade } from 'svelte/transition';
+  import GenderPointsAlive from "./gender_points_page_alive.svelte";
 
   let count, index, offset, progress;
   let width, height;
@@ -191,7 +192,7 @@
           <GenderPointsPage {index} {currentVisualization} />
         </div>
         <div transition:fade>
-          <Pclass_1Page {index} {currentVisualization} />   
+          <GenderPointsAlive {index} {currentVisualization} />   
         </div>
       </div>
     </section>

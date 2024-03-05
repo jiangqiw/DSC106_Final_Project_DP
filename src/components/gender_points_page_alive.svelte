@@ -12,7 +12,7 @@
         const height = window.innerHeight;
         const pointsPerSideX = 50;
         const pointsPerSideY = 40;
-        const totalGeneratedPoints = 1309;
+        const totalGeneratedPoints = 1309 + 107;
 
         // Assuming a fixed number of points for simplicity
         for (let i = 0; i < totalGeneratedPoints; i++) {
@@ -21,8 +21,11 @@
             points.push({
                 x: x * spacing + radius,
                 y: y * spacing + radius,
-                isBlue: i < 843, // male
-                isRed: i > 842, // female
+                isTransparent: i > 842 && i < 842 + 107,
+                isBlue: i < 162, // male
+                isBlueDead: (i < 843 && i > 161),
+                isRed: (i > 842 && i < 1183), // female
+                isRedDead: i > 1182,
                 // Increment delay for each point, adjusting the multiplier as needed
                 animationDelay: i * 5 // Adjust this value for the desired effect
             });
@@ -30,16 +33,19 @@
     });
 
     let isVisible = false;
-    $: isVisible = index === 4 && currentVisualization === 'gender';
+    $: isVisible = index === 4 && currentVisualization === 'class1';
 </script>
 
 <div class="graph-container">
 <svg class="graph" width="100vw" height="100vh" class:visible={isVisible}>
     {#if index === 4}
         {#each points as point, i}
-        <circle cx={point.x} cy={point.y} r="4" 
+        <circle cx={point.x} cy={point.y} r="4"
+            class:point{point.isTransparent}
             class:point={point.isBlue} 
             class:point_red={point.isRed}
+            class:point_blue_dead={point.isBlueDead}
+            class:point_red_dead={point.isRedDead}
             style="animation-delay: {point.animationDelay}ms;" 
             fill="black" />
         {/each}
@@ -57,6 +63,20 @@
         fill: black; /* Default color */
         animation: turnRed 1s forwards; /* Adjust timing as needed */
     }
+    .point_blue_dead {
+        fill: black;
+        animattion: turnBlueBlack 1s forwards;
+    }
+    .point_red_dead {
+        fill: black;
+        animattion: turnRedBlack 1s forwards;
+    }
+    .point_transparent {
+        fill: black;
+        animattion: turnTransparent 1s forwards;
+    }
+
+
 
     /* Keyframes to animate the fill color */
     @keyframes turnGreen {
@@ -75,6 +95,27 @@
             fill: red;
         }
     }
+    @keyframes turnBlueBlack {
+        to {
+            fill: blue;
+            opacity:50;
+        }
+    }
+    @keyframes turnRedBlack {
+        to {
+            fill: red;
+            opacity:50;
+        }
+    }
+
+    @keyframes turnTransparent {
+        to {
+            fill: red;
+            opacity:0;
+        }
+    }
+    
+
 
 
     .graph{
@@ -99,13 +140,11 @@
     }
 
     .graph-container {
-  width: 100%;
-  height: 400px; /* Example height, adjust based on your design */
-  /* Other styles as needed */
-}
+        position: absolute;
+        top: 0; /* Adjust this value to move the graph up or down */
+        left: 0; /* Adjust as needed */
+        width: 100%; /* Ensure it spans the width of its parent */
+    }
 </style>
 
 
-
-
-  
