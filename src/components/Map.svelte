@@ -18,6 +18,83 @@
     [-9.5, 50.7], // Queenstown (Cobh)
     [-39.10, 44.5]  // Example Sunk point, adjust as necessary
   ];
+  let cities = {
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.704351, 52.309700
+        ]
+      },
+      "properties": {
+        "city": "Southampton"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          3.0221, 51.2
+        ]
+      },
+      "properties": {
+        "city": "Cherbourg"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -8.2943, 53.8503
+        ]
+      },
+      "properties": {
+        "city": "Queenstown"
+      }
+    },
+    {
+    "type": "Feature",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+          -76.006, 40.7128
+      ]
+    },
+    "properties": {
+      "city": "<-- New York"
+    }
+  },
+  {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.1427, 52.3755
+        ]
+      },
+      "properties": {
+        "city": "Plymouth"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -52.5, 41.5
+        ]
+      },
+      "properties": {
+        "city": "Sunk Point"
+      }
+    }
+  ]
+}
 
   function updateZoomLevel() {
     const screenWidth = window.innerWidth;
@@ -42,6 +119,7 @@
     type: 'Point',
     coordinates
   });
+  // console.log(coordinates);
 
   // Check if the current index is the last point in the path
   if (pathIndex === path.length - 1) {
@@ -95,48 +173,65 @@
     }
 
     map.on("load", () => {
-    hideLabelLayers();
-    updateBounds();
-    map.on("zoom", updateBounds);
-    map.on("drag", updateBounds);
-    map.on("move", updateBounds);
-    
-    // Load a local image to use as the moving dot
-    map.loadImage('src/data/good_ship.jpg', (error, image) => {
-      if (error) throw error;
+      hideLabelLayers();
+      updateBounds();
+      map.on("zoom", updateBounds);
+      map.on("drag", updateBounds);
+      map.on("move", updateBounds);
       
-      // Add the image to the map style
-      map.addImage('custom-dot', image);
+      // Load a local image to use as the moving dot
+      map.loadImage('good_ship.jpg', (error, image) => {
+        if (error) throw error;
+        
+        // Add the image to the map style
+        map.addImage('custom-dot', image);
+        
+        // Now add the source for the moving dot
+        map.addSource('moving-dot', {
+          type: 'geojson',
+          data: {
+            type: 'Point',
+            coordinates: path[0] // Start at the first point
+          }
+        });
+        map.addSource('cities', {
+          type: 'geojson',
+          data: cities
+        });
+
+        map.addLayer({
+          id: 'city-points',
+          type: 'symbol',
+          source: 'cities',
+          layout: {
+            'icon-image': 'marker-15', // Use an appropriate marker icon
+            'icon-size': 1.5, // Adjust icon size
+            'text-field': '{city}', // Use the city property as label
+            'text-offset': [0, 1.5], // Offset text to be above the icon
+            'text-anchor': 'top'
+          }
+        });
       
-      // Now add the source for the moving dot
-      map.addSource('moving-dot', {
-        type: 'geojson',
-        data: {
-          type: 'Point',
-          coordinates: path[0] // Start at the first point
-        }
+      map.loadImage('bad_ship.jpg', (error, image) => {
+        if (error) throw error;
+        map.addImage('custom-dot-final', image);
       });
-    
-    map.loadImage('src/data/bad_ship.jpg', (error, image) => {
-      if (error) throw error;
-      map.addImage('custom-dot-final', image);
-    });
-      
-      // Replace the circle layer with a symbol layer that uses the loaded image
-      map.addLayer({
-        id: 'dot',
-        source: 'moving-dot',
-        type: 'symbol',
-        layout: {
-          'icon-image': 'custom-dot',
-          // These properties scale the image and adjust its position
-          'icon-size': 0.1, // Adjust based on your image size and preference
-          'icon-anchor': 'bottom' // Adjust if necessary to position the image correctly
-        }
+        
+        // Replace the circle layer with a symbol layer that uses the loaded image
+        map.addLayer({
+          id: 'dot',
+          source: 'moving-dot',
+          type: 'symbol',
+          layout: {
+            'icon-image': 'custom-dot',
+            // These properties scale the image and adjust its position
+            'icon-size': 0.1, // Adjust based on your image size and preference
+            'icon-anchor': 'bottom' // Adjust if necessary to position the image correctly
+          }
+        });
+        
+        animateDot();
       });
-      
-      animateDot();
-    });
   });
 });
   

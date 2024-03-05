@@ -1,6 +1,7 @@
 <script>
     import { onMount } from 'svelte';
     export let index;
+    export let currentVisualization;
 
     let points = [];
     const spacing = 12;
@@ -9,8 +10,8 @@
     onMount(() => {
         const width = window.innerWidth;
         const height = window.innerHeight;
-        const pointsPerSideX = 70;
-        const pointsPerSideY = 30;
+        const pointsPerSideX = 50;
+        const pointsPerSideY = 40;
         const totalGeneratedPoints = 1309;
 
         // Assuming a fixed number of points for simplicity
@@ -28,13 +29,10 @@
     });
 
     let isVisible = false;
-    $: if (index === 4) {
-        isVisible = true;
-    } else {
-        isVisible = false;
-    }
+    $: isVisible = index === 4 && currentVisualization === 'gender';
 </script>
 
+<div class="graph-container">
 <svg class="graph" width="100vw" height="100vh" class:visible={isVisible}>
     {#if index === 4}
         {#each points as point, i}
@@ -45,6 +43,7 @@
         {/each}
     {/if}
 </svg>
+</div>
 
 <style>
     /* Apply the animation only to points that should be green */
@@ -80,6 +79,12 @@
         visibility: visible;
         padding:0%;
     }
+
+    .graph-container {
+  width: 100%;
+  height: 400px; /* Example height, adjust based on your design */
+  /* Other styles as needed */
+}
 </style>
 
 

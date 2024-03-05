@@ -73,7 +73,7 @@ $: tweenedData_point = points.features.map((point, i) => ({
       );
     }
 
-    if ( index > 2) {
+    if ( index > 2 || index < 2) {
       tweenedX.set(
         cities.features.map((city) => 0),
       );
