@@ -182,10 +182,10 @@
             coordinates: path[0] // Start at the first point
           }
         });
-        map.addSource('cities', {
-          type: 'geojson',
-          data: cities
-        });
+        // map.addSource('cities', {
+        //   type: 'geojson',
+        //   data: cities
+        // });
 
         map.addLayer({
           id: 'city-points',
