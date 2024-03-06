@@ -1,7 +1,7 @@
 <script>
     import { onMount } from 'svelte';
     export let index;
-    export let currentVisualization_gender;
+    export let currentVisualization;
 
     let points = [];
     const spacing = 12;
@@ -33,7 +33,7 @@
     });
 
     let isVisible = false;
-    $: isVisible = index === 4 && currentVisualization_gender === 'casualty';
+    $: isVisible = index === 4 && currentVisualization === 'casualty';
 </script>
 
 <div class="graph-container">
@@ -146,5 +146,3 @@
         width: 100%; /* Ensure it spans the width of its parent */
     }
 </style>
-
-
