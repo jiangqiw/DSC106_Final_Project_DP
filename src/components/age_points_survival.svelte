@@ -1,7 +1,7 @@
 <script>
     import { onMount } from 'svelte';
     export let index;
-    export let pclassVisualization;
+    export let ageVisualization;
 
     let points = [];
     const spacing = 12;
@@ -11,7 +11,7 @@
 
     // Reactive statement to regenerate points when currentVisualization changes
     $: {
-        if (pclassVisualization === 'class1') {
+        if (ageVisualization === 'casualty') {
             generatePoints();
         }
     }
@@ -21,7 +21,7 @@
         points = [];
         
         // Adjust total points based on the current visualization
-        totalGeneratedPoints = 1309 + 76 + 90;
+        totalGeneratedPoints = 1309 + 62 + 64;
 
         for (let i = 0; i < totalGeneratedPoints; i++) {
             const x = i % pointsPerSideX;
@@ -29,10 +29,13 @@
             points.push({
                 x: x * spacing + radius,
                 y: y * spacing + radius,
-                isTransparent: (i > 324 && i < 324 + 76) || (i > 324+108+277+1 && i < 324+108+277+91),
-                isBlue: i < 325, // pclass0
-                isRed: i > 324 + 75 && i < 324+108+277 + 2, // pclass1
-                isGreen: i > 324+98+277+1+98, // pclass2
+                isTransparent: (i > 888 && i < 888 + 62) || (i >= 1024 + 62 && i < 1024 + 62 + 64),
+                isBlue: i < 888, // 15-40
+                isBlueDead: (i > 275 && i < 889),
+                isRed: i >= 888 + 62 && i < 1024 + 62 + 64, // pclass1
+                isRedDead: (i > 888 + 62 + 61 && i < 1024 + 62),
+                isGreen: i >= 1024 + 62 + 64, // pclass2
+                isGreenDead: (i >= 1024 + 62 + 64 + 90),
                 // Increment delay for each point, adjusting the multiplier as needed
                 animationDelay: i * 5 // Adjust this value for the desired effect
             });
@@ -41,19 +44,22 @@
 
     let isVisible = false;
     // $: isVisible = index === 5 && (currentVisuallization_pclass === 'class1');
-    $: isVisible = index === 6 && (pclassVisualization === 'class1');
+    $: isVisible = index === 8 && (ageVisualization === 'casualty');
 </script>
 
 
 <div class="graph-container">
 <svg class="graph" width="100vw" height="100vh" class:visible={isVisible}>
-    {#if index === 6}
+    {#if index === 8}
         {#each points as point, i}
         <circle cx={point.x} cy={point.y} r="4" 
             class:point={point.isGreen}
             class:point_transparent={point.isTransparent}
             class:point_blue={point.isBlue} 
+            class:point_blue_dead={point.isBlueDead}
             class:point_red={point.isRed}
+            class:point_red_dead={point.isRedDead}
+            class:point_green_dead={point.isGreenDead}
             style="animation-delay: {point.animationDelay}ms; opacity: {point.isTransparent ? '0' : '1'};" 
             fill="black" />
         {/each}
@@ -79,6 +85,19 @@
         fill: black;
         animation: turnBlue 1s forwards;
     }
+    .point_blue_dead {
+        fill: black;
+        animation: turnBlueBlack 1s forwards;
+    }
+    .point_red_dead {
+        fill: black;
+        animation: turnRedBlack 1s forwards;
+    }
+    .point_green_dead {
+        fill: black;
+        animation: turnGreenBlack 1s forwards;
+    }
+
 
     /* Keyframes to animate the fill color */
     @keyframes turnGreen {
@@ -96,6 +115,27 @@
             fill: red;
         }
     }
+    @keyframes turnBlueBlack {
+        to {
+            fill: blue;
+            opacity:30%;
+        }
+    }
+    @keyframes turnRedBlack {
+        to {
+            fill: red;
+            opacity:30%;
+        }
+    }
+
+    @keyframes turnGreenBlack {
+        to {
+            fill: green;
+            opacity:30%;
+        }
+    }
+
+    
     @keyframes turnTransparent {
         to {
             fill: red;

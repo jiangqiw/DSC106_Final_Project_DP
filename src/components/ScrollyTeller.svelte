@@ -7,10 +7,18 @@
   import Pclass_1Page from "./passenger_class1_points_page.svelte";
   import { fade } from 'svelte/transition';
   import GenderPointsAlive from "./gender_points_page_alive.svelte";
+  import Pclass_Survival from "./passenger_class1_points_survival_page.svelte";
+  import AgePoints from "./age_points.svelte";
+  import AgePointsAlive from "./age_points_survival.svelte";
+  import FareAmountPointsPage from "./fare_amount_points_page.svelte";
+  import FareAmountPointsAlivePage from "./fare_amount_points_alive_page.svelte";
 
   let count, index, offset, progress;
   let width, height;
   let currentVisualization = 'gender';
+  let pclassVisualization = 'class1';
+  let ageVisualization = 'age';
+  let fareVisualization = 'fare'
 
   // let adjustedWidth = width * 1;
   // let adjustedHeight = height * 1;
@@ -37,19 +45,34 @@
 
   $: projection = geoMercator().fitSize([width * 1.05, height * 1.05], geoJsonToFit);
 
-  function pclassSwitch() {
-    // Check if the current visualization does not start with "class"
-    if (!currentVisualization.startsWith('class')) {
-        currentVisualization = 'class1';
-    } else if (currentVisualization === 'class1') {
-        currentVisualization = 'class2';
-    } else if (currentVisualization === 'class2') {
-        currentVisualization = 'class3';
+  function toggleVisualization_pclass() {
+    // If the current visualization is 'gender', switch to 'gender_alive'
+    if (pclassVisualization === 'class1') {
+        pclassVisualization = 'casualty';
     } else {
-        // This else statement now only gets reached if the currentVisualization is 'class3'
-        currentVisualization = 'class1';
+        // In any other case (including when it's 'gender_alive' or any 'pclass' state), switch back to 'gender'
+        pclassVisualization = 'class1';
     }
 }
+  function toggleVisualization_age() {
+      // If the current visualization is 'gender', switch to 'gender_alive'
+      if (ageVisualization === 'age') {
+          ageVisualization = 'casualty';
+      } else {
+          // In any other case (including when it's 'gender_alive' or any 'pclass' state), switch back to 'gender'
+          ageVisualization = 'age';
+      }
+  }
+
+  function toggleVisualization_fare() {
+      // If the current visualization is 'gender', switch to 'gender_alive'
+      if (fareVisualization === 'fare') {
+          fareVisualization = 'casualty';
+      } else {
+          // In any other case (including when it's 'gender_alive' or any 'pclass' state), switch back to 'gender'
+          fareVisualization = 'fare';
+      }
+  }
 
 
   function toggleVisualization_gender() {
@@ -221,7 +244,6 @@
       This is the fifth section.
       <div class = "button-container">
         <button on:click={toggleVisualization_gender}>Click to see casualty</button>
-        <button on:click={pclassSwitch}>Go to passenger class report</button>
         <!-- <button on:click={toggleVisualization}>Go to age report</button> -->
       </div>
       <div class="visualization-container">
@@ -234,6 +256,65 @@
         <!-- <div>
           <Pclass_1Page {index} {currentVisuallization_pclass} />
         </div> -->
+      </div>
+    </section>
+    <section>
+      Hi
+    </section>
+    <section>
+      This is the sixth section.
+      <div class = "button-container_1">
+        <button on:click={toggleVisualization_pclass}>Click to see casualty</button>
+        <!-- <button on:click={toggleVisualization}>Go to age report</button> -->
+      </div>
+      <div class="visualization-container">
+        <div transition:fade>
+          <Pclass_1Page {index} {pclassVisualization} />
+        </div>
+        <div transition:fade>
+          <Pclass_Survival {index} {pclassVisualization} />   
+        </div>
+        <!-- <div>
+          <Pclass_1Page {index} {currentVisuallization_pclass} />
+        </div> -->
+      </div>
+    </section>
+    <section>
+      Hi
+    </section>
+    <section>
+      This is the seventh section.
+      <div class = "button-container_2">
+        <button on:click={toggleVisualization_age}>Click to see casualty</button>
+        <!-- <button on:click={toggleVisualization}>Go to age report</button> -->
+      </div>
+      <div class="visualization-container">
+        <div transition:fade>
+          <AgePoints {index} {ageVisualization} />
+        </div>
+        <div transition:fade>
+          <AgePointsAlive {index} {ageVisualization} />   
+        </div>
+        <!-- <div>
+          <Pclass_1Page {index} {currentVisuallization_pclass} />
+        </div> -->
+      </div>
+    </section>
+    <section>
+      Hi
+    </section>
+    <section>
+      This is the eighth section.
+      <div class = "button-container_3">
+        <button on:click={toggleVisualization_fare}>Click to see casualty</button>
+        <div class="visualization-container">
+          <div transition:fade>
+            <FareAmountPointsPage {index} {fareVisualization} />
+          </div>
+          <div transition:fade>
+            <FareAmountPointsAlivePage {index} {fareVisualization} />   
+          </div>
+
       </div>
     </section>
   </div>

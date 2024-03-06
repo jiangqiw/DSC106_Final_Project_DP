@@ -11,7 +11,7 @@
 
     // Reactive statement to regenerate points when currentVisualization changes
     $: {
-        if (pclassVisualization === 'class1') {
+        if (pclassVisualization === 'casualty') {
             generatePoints();
         }
     }
@@ -31,8 +31,11 @@
                 y: y * spacing + radius,
                 isTransparent: (i > 324 && i < 324 + 76) || (i > 324+108+277+1 && i < 324+108+277+91),
                 isBlue: i < 325, // pclass0
+                isBlueDead: (i > 200 && i < 325),
                 isRed: i > 324 + 75 && i < 324+108+277 + 2, // pclass1
-                isGreen: i > 324+98+277+1+98, // pclass2
+                isRedDead: i > 324 + 75 + 119 && i < 324+108+277 + 2,
+                isGreen: i < 1309 && i > 324+98+277+1+98, // pclass2
+                isGreenDead: i > 324+98+277+1+98 + 181 && i < 1309 + 76 + 90,
                 // Increment delay for each point, adjusting the multiplier as needed
                 animationDelay: i * 5 // Adjust this value for the desired effect
             });
@@ -41,7 +44,7 @@
 
     let isVisible = false;
     // $: isVisible = index === 5 && (currentVisuallization_pclass === 'class1');
-    $: isVisible = index === 6 && (pclassVisualization === 'class1');
+    $: isVisible = index === 6 && (pclassVisualization === 'casualty');
 </script>
 
 
@@ -53,7 +56,10 @@
             class:point={point.isGreen}
             class:point_transparent={point.isTransparent}
             class:point_blue={point.isBlue} 
+            class:point_blue_dead={point.isBlueDead}
             class:point_red={point.isRed}
+            class:point_red_dead={point.isRedDead}
+            class:point_green_dead={point.isGreenDead}
             style="animation-delay: {point.animationDelay}ms; opacity: {point.isTransparent ? '0' : '1'};" 
             fill="black" />
         {/each}
@@ -79,6 +85,19 @@
         fill: black;
         animation: turnBlue 1s forwards;
     }
+    .point_blue_dead {
+        fill: black;
+        animation: turnBlueBlack 1s forwards;
+    }
+    .point_red_dead {
+        fill: black;
+        animation: turnRedBlack 1s forwards;
+    }
+    .point_green_dead {
+        fill: black;
+        animation: turnGreenBlack 1s forwards;
+    }
+
 
     /* Keyframes to animate the fill color */
     @keyframes turnGreen {
@@ -96,6 +115,27 @@
             fill: red;
         }
     }
+    @keyframes turnBlueBlack {
+        to {
+            fill: blue;
+            opacity:30%;
+        }
+    }
+    @keyframes turnRedBlack {
+        to {
+            fill: red;
+            opacity:30%;
+        }
+    }
+
+    @keyframes turnGreenBlack {
+        to {
+            fill: green;
+            opacity:30%;
+        }
+    }
+
+    
     @keyframes turnTransparent {
         to {
             fill: red;

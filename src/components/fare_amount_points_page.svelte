@@ -1,7 +1,7 @@
 <script>
     import { onMount } from 'svelte';
     export let index;
-    export let pclassVisualization;
+    export let fareVisualization;
 
     let points = [];
     const spacing = 12;
@@ -11,7 +11,7 @@
 
     // Reactive statement to regenerate points when currentVisualization changes
     $: {
-        if (pclassVisualization === 'class1') {
+        if (fareVisualization === 'fare') {
             generatePoints();
         }
     }
@@ -21,7 +21,7 @@
         points = [];
         
         // Adjust total points based on the current visualization
-        totalGeneratedPoints = 1309 + 76 + 90;
+        totalGeneratedPoints = 1309 + 62 + 64 + 30 + 12 + 8;
 
         for (let i = 0; i < totalGeneratedPoints; i++) {
             const x = i % pointsPerSideX;
@@ -29,10 +29,10 @@
             points.push({
                 x: x * spacing + radius,
                 y: y * spacing + radius,
-                isTransparent: (i > 324 && i < 324 + 76) || (i > 324+108+277+1 && i < 324+108+277+91),
-                isBlue: i < 325, // pclass0
-                isRed: i > 324 + 75 && i < 324+108+277 + 2, // pclass1
-                isGreen: i > 324+98+277+1+98, // pclass2
+                isTransparent: (i > 958 && i < 958 + 62 + 30) || (i >= 958+62+266 && i < 958 + 62 + 266 + 62 + 64 - 12),
+                isBlue: i < 959, // <30
+                isRed: i >= 958 + 62 + 30 && i < 958+62+266, // 30-100
+                isGreen: i >= 958+62+266+62+64-20, // >100
                 // Increment delay for each point, adjusting the multiplier as needed
                 animationDelay: i * 5 // Adjust this value for the desired effect
             });
@@ -41,13 +41,13 @@
 
     let isVisible = false;
     // $: isVisible = index === 5 && (currentVisuallization_pclass === 'class1');
-    $: isVisible = index === 6 && (pclassVisualization === 'class1');
+    $: isVisible = index === 10 && (fareVisualization === 'fare');
 </script>
 
 
 <div class="graph-container">
 <svg class="graph" width="100vw" height="100vh" class:visible={isVisible}>
-    {#if index === 6}
+    {#if index === 10}
         {#each points as point, i}
         <circle cx={point.x} cy={point.y} r="4" 
             class:point={point.isGreen}
