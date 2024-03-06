@@ -1,18 +1,18 @@
 <script>
     import { onMount } from 'svelte';
     export let index;
-    export let currentVisualization;
+    export let currentVisualization_gender;
 
     let points = [];
     const spacing = 12;
-    let radius = 4;
+    let radius = 5;
 
     onMount(() => {
         const width = window.innerWidth;
         const height = window.innerHeight;
         const pointsPerSideX = 50;
         const pointsPerSideY = 40;
-        const totalGeneratedPoints = 1309 + 107;
+        const totalGeneratedPoints = 1309 + 108;
 
         // Assuming a fixed number of points for simplicity
         for (let i = 0; i < totalGeneratedPoints; i++) {
@@ -21,11 +21,11 @@
             points.push({
                 x: x * spacing + radius,
                 y: y * spacing + radius,
-                isTransparent: i > 842 && i < 842 + 107,
+                isTransparent: i > 842 && i < 842 + 108,
                 isBlue: i < 162, // male
                 isBlueDead: (i < 843 && i > 161),
-                isRed: (i > 842 && i < 1183), // female
-                isRedDead: i > 1182,
+                isRed: (i > 841+108 && i < 1183+108), // female
+                isRedDead: i > 1182 + 108,
                 // Increment delay for each point, adjusting the multiplier as needed
                 animationDelay: i * 5 // Adjust this value for the desired effect
             });
@@ -33,7 +33,7 @@
     });
 
     let isVisible = false;
-    $: isVisible = index === 4 && currentVisualization === 'class1';
+    $: isVisible = index === 4 && currentVisualization_gender === 'casualty';
 </script>
 
 <div class="graph-container">
@@ -46,7 +46,7 @@
             class:point_red={point.isRed}
             class:point_blue_dead={point.isBlueDead}
             class:point_red_dead={point.isRedDead}
-            style="animation-delay: {point.animationDelay}ms;" 
+            style="animation-delay: {point.animationDelay}ms; {point.isTransparent ? 'opacity: 0;' : ''}"  
             fill="black" />
         {/each}
     {/if}
@@ -98,13 +98,13 @@
     @keyframes turnBlueBlack {
         to {
             fill: blue;
-            opacity:50;
+            opacity:30%;
         }
     }
     @keyframes turnRedBlack {
         to {
             fill: red;
-            opacity:50;
+            opacity:30%;
         }
     }
 

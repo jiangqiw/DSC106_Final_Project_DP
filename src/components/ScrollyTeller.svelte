@@ -10,7 +10,8 @@
 
   let count, index, offset, progress;
   let width, height;
-  let currentVisualization = 'gender';
+  let currentVisualization_gender = 'gender';
+  let currentVisuallization_pclass = 'class1';
 
   // let adjustedWidth = width * 1;
   // let adjustedHeight = height * 1;
@@ -37,9 +38,22 @@
 
   $: projection = geoMercator().fitSize([width * 1.05, height * 1.05], geoJsonToFit);
 
-  function toggleVisualization() {
-    currentVisualization = currentVisualization === 'gender' ? 'class1' : 'gender';
+  function toggleVisualization_gender() {
+    currentVisualization_gender = "none";
+    currentVisualization_gender = currentVisualization_gender === 'gender' ? 'casualty' : 'gender';
+    currentVisualization_gender = 'none';
   }
+
+  function toggleVisualization_pclass() {
+    if (currentVisuallization_pclass === 'class1') {
+        currentVisuallization_pclass = 'class2';
+    } else if (currentVisuallization_pclass === 'class2') {
+        currentVisuallization_pclass = 'class3';
+    } else {
+        currentVisuallization_pclass = 'class1';
+    }
+}
+
 </script>
 
 <style>
@@ -186,13 +200,20 @@
     <section>This is the fourth section.</section>
     <section>
       This is the fifth section.
-      <button on:click={toggleVisualization}>Switch Visualization</button>
+      <div class = "button-container">
+        <button on:click={toggleVisualization_gender}>Click to see casualty</button>
+        <button on:click={toggleVisualization_pclass}>Go to passenger class report</button>
+        <!-- <button on:click={toggleVisualization}>Go to age report</button> -->
+      </div>
       <div class="visualization-container">
         <div transition:fade>
-          <GenderPointsPage {index} {currentVisualization} />
+          <GenderPointsPage {index} {currentVisualization_gender} />
         </div>
         <div transition:fade>
-          <GenderPointsAlive {index} {currentVisualization} />   
+          <GenderPointsAlive {index} {currentVisualization_gender} />   
+        </div>
+        <div>
+          <Pclass_1Page {index} {currentVisuallization_pclass} />
         </div>
       </div>
     </section>

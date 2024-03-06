@@ -1,7 +1,7 @@
 <script>
     import { onMount } from 'svelte';
     export let index;
-    export let currentVisualization;
+    export let currentVisualization_gender;
 
     let points = [];
     const spacing = 12;
@@ -21,7 +21,7 @@
             points.push({
                 x: x * spacing + radius,
                 y: y * spacing + radius,
-                isTransparent: i > 842 && i < 842 + 107,
+                isTransparent: i > 842 && i < 842 + 108,
                 isBlue: i < 843, // male
                 isRed: i > 842, // female
                 // Increment delay for each point, adjusting the multiplier as needed
@@ -31,20 +31,22 @@
     });
 
     let isVisible = false;
-    $: isVisible = index === 4 && currentVisualization === 'gender';
+    $: isVisible = index === 4 && currentVisualization_gender === 'gender';
 </script>
 
 <div class="graph-container">
 <svg class="graph" width="100vw" height="100vh" class:visible={isVisible}>
     {#if index === 4}
-        {#each points as point, i}
-        <circle cx={point.x} cy={point.y} r="4" 
-            class:point_transparent={point.isTransparent}
-            class:point={point.isBlue} 
-            class:point_red={point.isRed}
-            style="animation-delay: {point.animationDelay}ms;" 
-            fill="black" />
-        {/each}
+    {#each points as point, i}
+    <circle cx={point.x} cy={point.y} r="4" 
+        class:point_transparent={point.isTransparent}
+        class:point={point.isBlue} 
+        class:point_red={point.isRed}
+        style="animation-delay: {point.animationDelay}ms; opacity: {point.isTransparent ? '0' : '1'};" 
+        fill="black" />
+    {/each}
+
+
     {/if}
 </svg>
 </div>

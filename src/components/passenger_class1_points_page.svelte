@@ -1,7 +1,7 @@
 <script>
     import { onMount } from 'svelte';
     export let index;
-    export let currentVisualization;
+    export let currentVisuallization_pclass;
 
     let points = [];
     const spacing = 12;
@@ -11,7 +11,7 @@
 
     // Reactive statement to regenerate points when currentVisualization changes
     $: {
-        if (currentVisualization === 'class1') {
+        if (currentVisuallization_pclass === 'class1') {
             generatePoints();
         }
     }
@@ -32,7 +32,7 @@
     }
 
     let isVisible = false;
-    $: isVisible = index === 4 && (currentVisualization === 'class1');
+    $: isVisible = index === 4 && (currentVisuallization_pclass === 'class1');
 </script>
 
 
