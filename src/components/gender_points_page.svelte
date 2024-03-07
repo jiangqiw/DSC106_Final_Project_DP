@@ -10,11 +10,10 @@
     onMount(() => {
         const width = window.innerWidth;
         const height = window.innerHeight;
-        const pointsPerSideX = 50;
+        const pointsPerSideX = 35;
         const pointsPerSideY = 40;
         const totalGeneratedPoints = 1309 + 107;
 
-        // Assuming a fixed number of points for simplicity
         for (let i = 0; i < totalGeneratedPoints; i++) {
             const x = i % pointsPerSideX;
             const y = Math.floor(i / pointsPerSideX);
@@ -22,33 +21,60 @@
                 x: x * spacing + radius,
                 y: y * spacing + radius,
                 isTransparent: i > 842 && i < 842 + 108,
-                isBlue: i < 843, // male
-                isRed: i > 842, // female
-                // Increment delay for each point, adjusting the multiplier as needed
-                animationDelay: i * 5 // Adjust this value for the desired effect
+                isBlue: i < 843,
+                isRed: i > 842,
+                animationDelay: i * 5
             });
         }
     });
 
     let isVisible = false;
     $: isVisible = index === 4 && currentVisualization === 'gender';
+
+    // Pie chart data and calculations
+    let pieData = [
+        { value: 64.4, color: 'blue' },
+        { value: 35.6, color: 'red' }
+    ];
+
+    const pieRadius = 100;
+    let total = pieData.reduce((acc, slice) => acc + slice.value, 0);
+    let startAngle = 0;
+
+    pieData.forEach(slice => {
+        let slicePercentage = slice.value / total;
+        let endAngle = startAngle + slicePercentage * 2 * Math.PI;
+
+        slice.startAngle = startAngle;
+        slice.endAngle = endAngle;
+        startAngle = endAngle;
+    });
 </script>
 
-<div class="graph-container">
-<svg class="graph" width="100vw" height="100vh" class:visible={isVisible}>
+<div class="visualization-container" class:visible={isVisible}>
     {#if index === 4}
-    {#each points as point, i}
-    <circle cx={point.x} cy={point.y} r="4" 
-        class:point_transparent={point.isTransparent}
-        class:point={point.isBlue} 
-        class:point_red={point.isRed}
-        style="animation-delay: {point.animationDelay}ms; opacity: {point.isTransparent ? '0' : '1'};" 
-        fill="black" />
-    {/each}
-
-
+        <!-- Point Graph: Adjust the width to allow space for the pie chart -->
+        <svg class="graph" width="75%" height="90vh" class:visible={isVisible}>
+            {#each points as point, i}
+            <circle cx={point.x} cy={point.y} r="4"
+                class:point_transparent={point.isTransparent}
+                class:point={point.isBlue}
+                class:point_red={point.isRed}
+                style="animation-delay: {point.animationDelay}ms; opacity: {point.isTransparent ? '0' : '1'};"
+                fill="black" />
+            {/each}
+        </svg>
+        
+        <!-- Pie Chart: Remove absolute positioning and adjust the width -->
+        <svg class="graph_1" width="25%" height="200" viewBox="-100 -100 200 200" class:visible={isVisible}>
+            {#each pieData as slice}
+            <path d="M 0 0 L {pieRadius * Math.cos(slice.startAngle)} {pieRadius * Math.sin(slice.startAngle)}
+                        A {pieRadius} {pieRadius} 0 {(slice.endAngle - slice.startAngle > Math.PI) ? 1 : 0} 1
+                        {pieRadius * Math.cos(slice.endAngle)} {pieRadius * Math.sin(slice.endAngle)} Z"
+                    fill="{slice.color}"/>
+            {/each}
+        </svg>
     {/if}
-</svg>
 </div>
 
 <style>
@@ -104,6 +130,20 @@
         align-items: center;
     }
 
+    .graph_1{
+        width: 50%;
+        height: 50vh;
+        margin: 10;
+        margin-top: 0px;
+        margin-right:-100px;
+        position: relative;
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity 0.5s, visibility 0.5s;
+        justify-content: center;
+        align-items: center;
+    }
+
     /* Other styles remain unchanged */
     .graph.visible {
         margin: none;
@@ -112,11 +152,30 @@
         padding:0%;
     }
 
-    .graph-container {
-  width: 100%;
-  height: 400px; /* Example height, adjust based on your design */
-  /* Other styles as needed */
-}
+    .graph_1.visible {
+        margin: none;
+        opacity: 1;
+        visibility: visible;
+        padding:0%;
+    }
+
+    .visualization-container {
+        width: 100%;
+        height: 100vh; /* Adjust based on your layout */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+    }
+
+    .visualization-container.visible {
+        display: flex;
+        flex-direction: row; /* Ensures side-by-side layout */
+        justify-content: space-around; /* Adjusts space between and around items */
+        align-items: center; /* Centers items vertically */
+        width: 100%;
+        height: 100vh;
+    }
 </style>
 
 
