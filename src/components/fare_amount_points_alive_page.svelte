@@ -37,7 +37,7 @@
                 isGreen: i >= 958+62+266+62+64-20, // >100
                 isGreenDead: i > 958+62+266+62+64-20+60,
                 // Increment delay for each point, adjusting the multiplier as needed
-                animationDelay: i * 5 // Adjust this value for the desired effect
+                // animationDelay: i * 5 // Adjust this value for the desired effect
             });
         }
     }

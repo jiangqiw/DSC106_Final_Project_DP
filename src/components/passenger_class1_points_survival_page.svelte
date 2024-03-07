@@ -37,7 +37,7 @@
                 isGreen: i < 1309 && i > 324+98+277+1+98, // pclass2
                 isGreenDead: i > 324+98+277+1+98 + 181 && i < 1309 + 76 + 90,
                 // Increment delay for each point, adjusting the multiplier as needed
-                animationDelay: i * 5 // Adjust this value for the desired effect
+                // animationDelay: i * 5 // Adjust this value for the desired effect
             });
         }
     }

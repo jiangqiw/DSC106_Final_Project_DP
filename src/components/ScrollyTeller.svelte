@@ -84,18 +84,6 @@
         currentVisualization = 'gender';
     }
 }
-
-
-//   function toggleVisualization_pclass() {
-//     if (currentVisuallization_pclass === 'class1') {
-//         currentVisuallization_pclass = 'class2';
-//     } else if (currentVisuallization_pclass === 'class2') {
-//         currentVisuallization_pclass = 'class3';
-//     } else {
-//         currentVisuallization_pclass = 'class1';
-//     }
-// }
-
 </script>
 
 <style>

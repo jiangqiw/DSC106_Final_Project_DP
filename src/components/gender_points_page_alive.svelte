@@ -27,7 +27,7 @@
                 isRed: (i > 841+108 && i < 1183+108), // female
                 isRedDead: i > 1182 + 108,
                 // Increment delay for each point, adjusting the multiplier as needed
-                animationDelay: i * 5 // Adjust this value for the desired effect
+                // animationDelay: i * 5 // Adjust this value for the desired effect
             });
         }
     });
@@ -46,7 +46,7 @@
             class:point_red={point.isRed}
             class:point_blue_dead={point.isBlueDead}
             class:point_red_dead={point.isRedDead}
-            style="animation-delay: {point.animationDelay}ms; {point.isTransparent ? 'opacity: 0;' : ''}"  
+            style="animation-delay: {point.animationDelay}ms; opacity: {point.isTransparent ? '0' : '1'};" 
             fill="black" />
         {/each}
     {/if}
@@ -57,23 +57,23 @@
     /* Apply the animation only to points that should be green */
     .point {
         fill: black; /* Default color */
-        animation: turnBlue 1s forwards; /* Adjust timing as needed */
+        animation: turnBlue 0s forwards; /* Adjust timing as needed */
     }
     .point_red {
         fill: black; /* Default color */
-        animation: turnRed 1s forwards; /* Adjust timing as needed */
+        animation: turnRed 0s forwards; /* Adjust timing as needed */
     }
     .point_blue_dead {
         fill: black;
-        animation: turnBlueBlack 1s forwards;
+        animation: turnBlueBlack 0s forwards;
     }
     .point_red_dead {
         fill: black;
-        animation: turnRedBlack 1s forwards;
+        animation: turnRedBlack 0s forwards;
     }
     .point_transparent {
         fill: black;
-        animation: turnTransparent 1s forwards;
+        animation: turnTransparent 0s forwards;
     }
 
 
