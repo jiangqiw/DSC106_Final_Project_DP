@@ -174,7 +174,7 @@
     /* outline: rgb(196, 193, 196) solid 3px; */
     outline: none;
     text-align: center;
-    max-width: 1000px; /* adjust at will */
+    max-width: 1000; /* adjust at will */
     color: black;
     padding: 2em;
     margin: 0 0 2em 0;
@@ -198,11 +198,14 @@
   margin-top: none;
   padding: none;
   }
+
   .legend {
     display: flex;
     flex-direction: column;
     align-items: start;
     padding: 10px;
+    margin-bottom: 0px;
+    margin-right: 100px;
     /* Add more styling as needed */
 }
 
@@ -226,6 +229,16 @@
 
 .dot-red {
     background-color: red;
+}
+
+.dot-lightblue {
+    background-color: blue;
+    opacity: 0.3;
+}
+
+.dot-lightred {
+    background-color: red;
+    opacity: 0.3;
 }
 
 
@@ -290,6 +303,12 @@
         <div class="legend-item">
             <span class="dot dot-red"></span> Red Dot - [Description for red dots]
         </div>
+        <div class="legend-item">
+          <span class="dot dot-lightblue"></span> Light Blue Dot - [Description for blue dots]
+        </div>
+        <div class="legend-item">
+            <span class="dot dot-lightred"></span> Light Red Dot - [Description for red dots]
+        </div>
       </div>
       <div class="visualization-container">
         <div transition:fade>
@@ -312,6 +331,22 @@
         <button on:click={toggleVisualization_pclass}>Click to see casualty</button>
         <!-- <button on:click={toggleVisualization}>Go to age report</button> -->
       </div>
+      <p></p>
+      <div class="legend">
+        <div class="legend-item">
+            <span class="dot dot-blue"></span> Blue Dot - [Description for blue dots]
+        </div>
+        <div class="legend-item">
+            <span class="dot dot-red"></span> Red Dot - [Description for red dots]
+        </div>
+        <div class="legend-item">
+          <span class="dot dot-lightblue"></span> Light Blue Dot - [Description for blue dots]
+        </div>
+        <div class="legend-item">
+            <span class="dot dot-lightred"></span> Light Red Dot - [Description for red dots]
+        </div>
+      </div>
+      <p></p>
       <div class="visualization-container">
         <div transition:fade>
           <Pclass_1Page {index} {pclassVisualization} />

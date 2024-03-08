@@ -36,11 +36,15 @@
     $: isVisible = index === 4 && currentVisualization === 'casualty';
 
     let pieData = [
-        { value: 12.3, color: 'blue' },
-        {value: 52.1, color: "blue", opacity: 0.5},
-        { value: 25.9, color: 'red' },
-        {value: 9.7, color: 'red', opacity: 0.5}
+        { value: 19.1, color: 'blue' },
+        {value: 80.9, color: "blue", opacity: 0.5}
     ];
+
+    let pieData_1 = [
+        { value: 72.7, color: 'red' },
+        {value: 27.3, color: "red", opacity: 0.5}
+    ];
+
 
     const pieRadius = 100;
     let total = pieData.reduce((acc, slice) => acc + slice.value, 0);
@@ -61,6 +65,25 @@
         slice.labelX = adjustedRadius * Math.cos(slice.midAngle);
         slice.labelY = adjustedRadius * Math.sin(slice.midAngle);
         slice.label = `${Math.round((slice.value / total) * 100)}%`;
+    });
+
+    let total_1 = pieData_1.reduce((acc, slice) => acc + slice.value, 0);
+    let startAngle_1 = 0; // Start angle for pieData_1
+
+    pieData_1.forEach(slice => {
+        let slicePercentage_1 = slice.value / total_1;
+        let endAngle_1 = startAngle_1 + slicePercentage_1 * 2 * Math.PI;
+
+        slice.startAngle = startAngle_1; // Use correct variable for start angle
+        slice.endAngle = endAngle_1; // Use correct variable for end angle
+        slice.midAngle = (slice.startAngle + slice.endAngle) / 2; // Correctly calculate midAngle
+        startAngle_1 = endAngle_1; // Update startAngle_1 for the next slice
+
+        // Correct label position calculations
+        let adjustedRadius_1 = pieRadius + labelOffset;
+        slice.labelX = adjustedRadius_1 * Math.cos(slice.midAngle);
+        slice.labelY = adjustedRadius_1 * Math.sin(slice.midAngle);
+        slice.label = `${Math.round((slice.value / total_1) * 100)}%`; // Use total_1 for percentage
     });
 
 </script>
@@ -97,7 +120,7 @@
         </svg>
 
         <svg class="graph_2" width="200" height="200" viewBox="-100 -100 200 200" class:visible={isVisible}>
-            {#each pieData as slice}
+            {#each pieData_1 as slice}
             <path d="M 0 0 L {pieRadius * Math.cos(slice.startAngle)} {pieRadius * Math.sin(slice.startAngle)}
                         A {pieRadius} {pieRadius} 0 {(slice.endAngle - slice.startAngle > Math.PI) ? 1 : 0} 1
                         {pieRadius * Math.cos(slice.endAngle)} {pieRadius * Math.sin(slice.endAngle)} Z"
@@ -211,7 +234,7 @@
         margin: 10;
         margin-top: 290px;
         margin-right:-200px;
-        margin-left: -37px;
+        margin-left: -50px;
         margin-bottom: 90px;
         position: relative;
         opacity: 0;
