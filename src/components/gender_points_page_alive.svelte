@@ -10,7 +10,7 @@
     onMount(() => {
         const width = window.innerWidth;
         const height = window.innerHeight;
-        const pointsPerSideX = 35;
+        const pointsPerSideX = 30;
         const pointsPerSideY = 40;
         const totalGeneratedPoints = 1309 + 108;
 
@@ -82,7 +82,21 @@
         </svg>
         
         <!-- Pie Chart: Remove absolute positioning and adjust the width -->
-        <svg class="graph_1" width="25%" height="200" viewBox="-100 -100 200 200" class:visible={isVisible}>
+        <svg class="graph_1" width="200" height="200" viewBox="-100 -100 200 200" class:visible={isVisible}>
+            {#each pieData as slice}
+            <path d="M 0 0 L {pieRadius * Math.cos(slice.startAngle)} {pieRadius * Math.sin(slice.startAngle)}
+                        A {pieRadius} {pieRadius} 0 {(slice.endAngle - slice.startAngle > Math.PI) ? 1 : 0} 1
+                        {pieRadius * Math.cos(slice.endAngle)} {pieRadius * Math.sin(slice.endAngle)} Z"
+                    fill="{slice.color}"
+                    fill-opacity="{slice.opacity}"
+                    />
+            <text x={slice.labelX} y={slice.labelY} text-anchor="middle" fill="white" dy=".3em">
+                        {slice.label}
+            </text>
+            {/each}
+        </svg>
+
+        <svg class="graph_2" width="200" height="200" viewBox="-100 -100 200 200" class:visible={isVisible}>
             {#each pieData as slice}
             <path d="M 0 0 L {pieRadius * Math.cos(slice.startAngle)} {pieRadius * Math.sin(slice.startAngle)}
                         A {pieRadius} {pieRadius} 0 {(slice.endAngle - slice.startAngle > Math.PI) ? 1 : 0} 1
@@ -181,8 +195,24 @@
         height: 50vh;
         margin: 10;
         margin-top: 0px;
-        margin-right:-100px;
+        margin-right:-200px;
+        margin-left: 100px;
         margin-bottom: 500px;
+        position: relative;
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity 0.5s, visibility 0.5s;
+        justify-content: center;
+        align-items: center;
+    }
+    .graph_2{
+        width: 50%;
+        height: 50vh;
+        margin: 10;
+        margin-top: 290px;
+        margin-right:-200px;
+        margin-left: -37px;
+        margin-bottom: 90px;
         position: relative;
         opacity: 0;
         visibility: hidden;
@@ -199,6 +229,12 @@
         padding:0%;
     }
     .graph_1.visible {
+        margin: none;
+        opacity: 1;
+        visibility: visible;
+        padding:0%;
+    }
+    .graph_2.visible {
         margin: none;
         opacity: 1;
         visibility: visible;
