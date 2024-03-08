@@ -89,7 +89,7 @@
 
   // Update the background image based on the current page index
   $: if (index === 4) { // Assuming pages are 0-indexed, so page 5 has an index of 4
-    currentBackground = '/Jack_Rose.jpg';
+    currentBackground = '/gender.jpg';
   } else {
     currentBackground = '/titanic.jpeg';
   }
@@ -124,15 +124,28 @@
     /* z-index: -1; */
 
     .background {
+    /* Keep your background styles but remove the opacity here */
     width: 100%;
     height: 100vh;
-    outline: none;
     position: relative;
     background-size: cover;
     background-position: center;
-    opacity: 0.6;
     z-index: -1;
   }
+
+  .background-image {
+    /* New class for the actual background image with opacity */
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-size: cover;
+    background-position: center;
+    opacity: 0.3; /* Set your desired opacity for the background image here */
+    z-index: -2; /* Ensure it's behind everything else */
+  }
+
 
   .foreground {
     width: 50%;
@@ -146,8 +159,10 @@
 
   .progress-bars {
     position: absolute;
-    background: rgba(168, 168, 169, 0.2) /*  40% opaque */;
+    background: rgba(168, 168, 169, 0.2) ;
     visibility: visible;
+    opacity:1;
+    z-index:auto;
   }
   
 
@@ -236,15 +251,16 @@
   bind:offset
   bind:progress
 >
-<div class="background" slot="background" bind:clientWidth={width} bind:clientHeight={height} style="background-image: url({currentBackground});">
-    <Map bind:geoJsonToFit {index} />
-    <Graph {index} {width} {height} {projection} />
-    <!-- <GenderPointsPage {index} /> -->
-    <div class="progress-bars">
-      <p>total progress:<strong>{index + 1}/{count}</strong></p >
-      <progress value={progress || 0} />
-    </div>
+<div class="background" slot="background" bind:clientWidth={width} bind:clientHeight={height}>
+  <!-- Separate container for the background image to control its opacity independently -->
+  <div class="background-image" style="background-image: url({currentBackground});"></div>
+  <Map bind:geoJsonToFit {index} />
+  <Graph {index} {width} {height} {projection} />
+  <div class="progress-bars">
+    <p>total progress:<strong>{index + 1}/{count}</strong></p >
+    <progress value={progress || 0}></progress>
   </div>
+</div>
 
   <div class="foreground" slot="foreground">
     <section>This is the first section.

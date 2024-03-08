@@ -37,9 +37,9 @@
 
     let pieData = [
         { value: 12.3, color: 'blue' },
-        {value: 52.1, color: "blue", opacity: 0.3},
+        {value: 52.1, color: "blue", opacity: 0.5},
         { value: 25.9, color: 'red' },
-        {value: 9.7, color: 'red', opacity: 0.3}
+        {value: 9.7, color: 'red', opacity: 0.5}
     ];
 
     const pieRadius = 100;
@@ -144,13 +144,13 @@
     @keyframes turnBlueBlack {
         to {
             fill: blue;
-            opacity:30%;
+            opacity:50%;
         }
     }
     @keyframes turnRedBlack {
         to {
             fill: red;
-            opacity:30%;
+            opacity:50%;
         }
     }
 
