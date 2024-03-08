@@ -40,14 +40,22 @@
     const pieRadius = 100;
     let total = pieData.reduce((acc, slice) => acc + slice.value, 0);
     let startAngle = 0;
+    const labelOffset = -35; 
 
     pieData.forEach(slice => {
         let slicePercentage = slice.value / total;
         let endAngle = startAngle + slicePercentage * 2 * Math.PI;
 
+
+        let adjustedRadius = pieRadius + labelOffset;
+
         slice.startAngle = startAngle;
         slice.endAngle = endAngle;
+        slice.midAngle = (slice.startAngle + slice.endAngle) / 2;
         startAngle = endAngle;
+        slice.labelX = adjustedRadius * Math.cos(slice.midAngle);
+        slice.labelY = adjustedRadius * Math.sin(slice.midAngle);
+        slice.label = `${Math.round((slice.value / total) * 100)}%`;
     });
 </script>
 
@@ -72,6 +80,9 @@
                         A {pieRadius} {pieRadius} 0 {(slice.endAngle - slice.startAngle > Math.PI) ? 1 : 0} 1
                         {pieRadius * Math.cos(slice.endAngle)} {pieRadius * Math.sin(slice.endAngle)} Z"
                     fill="{slice.color}"/>
+            <text x={slice.labelX} y={slice.labelY} text-anchor="middle" fill="white" dy=".3em">
+                        {slice.label}
+            </text>
             {/each}
         </svg>
     {/if}
@@ -121,7 +132,7 @@
         width: 100%;
         height: 100vh;
         margin: auto;
-        margin-top: 150px;
+        margin-top: 0;
         position: center;
         opacity: 0;
         visibility: hidden;
@@ -136,6 +147,7 @@
         margin: 10;
         margin-top: 0px;
         margin-right:-100px;
+        margin-bottom: 500px;
         position: relative;
         opacity: 0;
         visibility: hidden;

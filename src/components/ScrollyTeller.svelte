@@ -84,6 +84,15 @@
         currentVisualization = 'gender';
     }
 }
+
+  let currentBackground = '/titanic.jpeg'; // Default background image
+
+  // Update the background image based on the current page index
+  $: if (index === 4) { // Assuming pages are 0-indexed, so page 5 has an index of 4
+    currentBackground = '/Jack_Rose.jpg';
+  } else {
+    currentBackground = '/titanic.jpeg';
+  }
 </script>
 
 <style>
@@ -115,25 +124,15 @@
     /* z-index: -1; */
 
     .background {
-      width: 100%;
-      height: 100vh;
-      outline: none;
-      position: relative; /* This should ensure that z-index is properly applied to children */
-    }
-
-    .background::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background-image: url('/titanic.jpeg');
-      background-size: cover;
-      background-position: center;
-      opacity: 0.3;
-      z-index: -1; /* This should be uncommented to ensure it stays behind the Map component */
-    }
+    width: 100%;
+    height: 100vh;
+    outline: none;
+    position: relative;
+    background-size: cover;
+    background-position: center;
+    opacity: 0.6;
+    z-index: -1;
+  }
 
   .foreground {
     width: 50%;
@@ -180,7 +179,40 @@
   position: relative;
   height: 100vh; /* Adjust based on your content */
   width: 100%; /* This could also be a specific width depending on your design */
+  top: 0px;
+  margin-top: none;
+  padding: none;
+  }
+  .legend {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    padding: 10px;
+    /* Add more styling as needed */
 }
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 5px; /* Space between legend items */
+}
+
+.dot {
+    height: 10px;
+    width: 10px;
+    border-radius: 50%;
+    display: inline-block;
+    margin-right: 5px;
+}
+
+.dot-blue {
+    background-color: blue;
+}
+
+.dot-red {
+    background-color: red;
+}
+
 
 /* Assuming GenderPointsPage and Pclass_1Page have a top-level element you can target */
 /* .gender-points, .pclass-1 {
@@ -204,7 +236,7 @@
   bind:offset
   bind:progress
 >
-  <div class="background" slot="background" bind:clientWidth={width} bind:clientHeight={height}>
+<div class="background" slot="background" bind:clientWidth={width} bind:clientHeight={height} style="background-image: url({currentBackground});">
     <Map bind:geoJsonToFit {index} />
     <Graph {index} {width} {height} {projection} />
     <!-- <GenderPointsPage {index} /> -->
@@ -232,7 +264,16 @@
       This is the fifth section.
       <div class = "button-container">
         <button on:click={toggleVisualization_gender}>Click to see casualty</button>
-        <!-- <button on:click={toggleVisualization}>Go to age report</button> -->
+        <p></p>
+      </div>
+      <p></p>
+      <div class="legend">
+        <div class="legend-item">
+            <span class="dot dot-blue"></span> Blue Dot - [Description for blue dots]
+        </div>
+        <div class="legend-item">
+            <span class="dot dot-red"></span> Red Dot - [Description for red dots]
+        </div>
       </div>
       <div class="visualization-container">
         <div transition:fade>
