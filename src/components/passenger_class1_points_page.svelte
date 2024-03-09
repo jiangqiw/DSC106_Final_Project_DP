@@ -146,7 +146,7 @@
         width: 100%;
         height: 100vh;
         margin: auto;
-        margin-top: 0px;
+        margin-top: -20px;
         position: center;
         opacity: 0;
         visibility: hidden;
@@ -158,7 +158,7 @@
         width: 90%;
         height: 50vh;
         margin: 10;
-        margin-top: 350px;
+        margin-top: 330px;
         margin-right:-200px;
         margin-left: 100px;
         margin-bottom: 500px;

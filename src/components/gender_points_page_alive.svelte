@@ -232,7 +232,7 @@
         width: 50%;
         height: 50vh;
         margin: 10;
-        margin-top: 290px;
+        margin-top: 260px;
         margin-right:-200px;
         margin-left: -50px;
         margin-bottom: 90px;

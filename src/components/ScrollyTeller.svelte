@@ -90,6 +90,8 @@
   // Update the background image based on the current page index
   $: if (index === 4) { // Assuming pages are 0-indexed, so page 5 has an index of 4
     currentBackground = '/gender.jpg';
+  } else if (index === 6){
+    currentBackground = '/Pclass.jpg';
   } else {
     currentBackground = '/titanic.jpeg';
   }
@@ -298,16 +300,16 @@
       <p></p>
       <div class="legend">
         <div class="legend-item">
-            <span class="dot dot-blue"></span> Blue Dot - [Description for blue dots]
+            <span class="dot dot-blue"></span> Blue Dot - [Male]
         </div>
         <div class="legend-item">
-            <span class="dot dot-red"></span> Red Dot - [Description for red dots]
+            <span class="dot dot-red"></span> Red Dot - [Female]
         </div>
         <div class="legend-item">
-          <span class="dot dot-lightblue"></span> Light Blue Dot - [Description for blue dots]
+          <span class="dot dot-lightblue"></span> Light Blue Dot - [Male dead]
         </div>
         <div class="legend-item">
-            <span class="dot dot-lightred"></span> Light Red Dot - [Description for red dots]
+            <span class="dot dot-lightred"></span> Light Red Dot - [Female dead]
         </div>
       </div>
       <div class="visualization-container">

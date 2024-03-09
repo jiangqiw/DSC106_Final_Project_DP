@@ -6,7 +6,7 @@
     let points = [];
     const spacing = 12;
     let radius = 4;
-    const pointsPerSideX = 35;
+    const pointsPerSideX = 30;
     let totalGeneratedPoints = 323; // Adjust based on visualization
 
     // Reactive statement to regenerate points when currentVisualization changes
@@ -248,20 +248,20 @@
     @keyframes turnBlueBlack {
         to {
             fill: blue;
-            opacity:30%;
+            opacity:50%;
         }
     }
     @keyframes turnRedBlack {
         to {
             fill: red;
-            opacity:30%;
+            opacity:50%;
         }
     }
 
     @keyframes turnGreenBlack {
         to {
             fill: green;
-            opacity:30%;
+            opacity:50%;
         }
     }
 
@@ -277,7 +277,7 @@
         width: 100%;
         height: 100vh;
         margin: auto;
-        margin-top: 0px;
+        margin-top: -20px;
         position: center;
         opacity: 0;
         visibility: hidden;
