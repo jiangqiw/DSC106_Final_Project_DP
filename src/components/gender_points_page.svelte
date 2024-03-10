@@ -1,7 +1,7 @@
 <script>
     import { onMount } from 'svelte';
-    import * as echarts from 'echarts';
-    import { option1 } from "/Users/jasondai/Desktop/UCSD/DSC 106/DSC106_Final_Project_DP/src/lib/chartOptions.js";
+    // import * as echarts from 'echarts';
+    // import { option1 } from "/Users/jasondai/Desktop/UCSD/DSC 106/DSC106_Final_Project_DP/src/lib/chartOptions.js";
     export let index;
     export let currentVisualization;
 
