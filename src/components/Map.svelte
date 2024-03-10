@@ -235,7 +235,7 @@
      ];
    }
   let isVisible = false;
-  $: if (index === 2) {
+  $: if (index === 0) {
     isVisible = true;
     startAnimation();
   } else {

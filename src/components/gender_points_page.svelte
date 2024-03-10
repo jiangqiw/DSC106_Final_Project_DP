@@ -1,16 +1,26 @@
 <script>
     import { onMount } from 'svelte';
+    import * as echarts from 'echarts';
+    import { option1 } from "/Users/jasondai/Desktop/UCSD/DSC 106/DSC106_Final_Project_DP/src/lib/chartOptions.js";
     export let index;
     export let currentVisualization;
+
 
     let points = [];
     const spacing = 12;
     let radius = 4;
 
+    let chartInstance; // This will be bound to the <div> for ECharts
+
+    function initializeChart() {
+        const initializedChart = echarts.init(chartInstance);
+        initializedChart.setOption(option1);
+    }
+
     onMount(() => {
         const width = window.innerWidth;
         const height = window.innerHeight;
-        const pointsPerSideX = 35;
+        const pointsPerSideX = 30;
         const pointsPerSideY = 40;
         const totalGeneratedPoints = 1309 + 107;
 
@@ -20,16 +30,19 @@
             points.push({
                 x: x * spacing + radius,
                 y: y * spacing + radius,
-                isTransparent: i > 842 && i < 842 + 108,
+                isTransparent: i > 842 && i < 842 + 88,
                 isBlue: i < 843,
                 isRed: i > 842,
-                animationDelay: i * 5
+                animationDelay: i * 1
             });
         }
     });
 
     let isVisible = false;
-    $: isVisible = index === 4 && currentVisualization === 'gender';
+    $: isVisible = index === 6 && currentVisualization === 'gender';
+    $: if (index === 2 && currentVisualization === 'gender' && chartInstance) {
+        initializeChart();
+    }
 
     // Pie chart data and calculations
     let pieData = [
@@ -60,7 +73,7 @@
 </script>
 
 <div class="visualization-container" class:visible={isVisible}>
-    {#if index === 4}
+    {#if index === 6}
         <!-- Point Graph: Adjust the width to allow space for the pie chart -->
         <svg class="graph" width="75%" height="90vh" class:visible={isVisible}>
             {#each points as point, i}
@@ -72,6 +85,8 @@
                 fill="black" />
             {/each}
         </svg>
+
+        <!-- <div bind:this={chartInstance} class="pie-chart-container"></div> -->
         
         <!-- Pie Chart: Remove absolute positioning and adjust the width -->
         <svg class="graph_1" width="25%" height="200" viewBox="-100 -100 200 200" class:visible={isVisible}>
@@ -138,16 +153,15 @@
         visibility: hidden;
         transition: opacity 0.5s, visibility 0.5s;
         justify-content: center;
-        align-items: center;
+        align-items:center;
     }
 
     .graph_1{
-        width: 50%;
+        width: 90%;
         height: 50vh;
-        margin: 10;
-        margin-top: 0px;
-        margin-right:-200px;
-        margin-left: 100px;
+        margin-top: 230px;
+        margin-right:-300px;
+        margin-left: 50px;
         margin-bottom: 500px;
         position: relative;
         opacity: 0;
@@ -188,6 +202,12 @@
         align-items: center; /* Centers items vertically */
         width: 100%;
         height: 100vh;
+    }
+
+    .pie-chart-container {
+    flex: 1; /* Less space for the pie chart */
+    height: 400px; /* Fixed height for the pie chart */
+    visibility: visible; /* Ensure visibility is not controlled by CSS */
     }
 </style>
 

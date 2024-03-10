@@ -6,7 +6,7 @@
     let points = [];
     const spacing = 12;
     let radius = 4;
-    const pointsPerSideX = 35;
+    const pointsPerSideX = 30;
     let totalGeneratedPoints = 323; // Adjust based on visualization
 
     // Reactive statement to regenerate points when currentVisualization changes
@@ -29,13 +29,13 @@
             points.push({
                 x: x * spacing + radius,
                 y: y * spacing + radius,
-                isTransparent: (i > 888 && i < 888 + 62) || (i >= 1024 + 62 && i < 1024 + 62 + 64),
-                isBlue: i < 888 + 62, // 15-40
-                isRed: i >= 888 + 62 && i < 1024 + 62 + 64, // pclass1
-                isGreen: i >= 1024 + 62 + 64, // pclass2
-                // Increment delay for each point, adjusting the multiplier as needed
-                animationDelay: i * 5 // Adjust this value for the desired effect
+                isTransparent: (i >= 109 && i < 150) || (i >= 861 && i < 915 - 15), // Transparent dots
+                isBlue: i < 109, // This color group is not used in the new requirements
+                isRed: i >= 150 && i < 861, // Red dots
+                isGreen: i >= 915 - 15, // Green dots before and after the specified groups
+                animationDelay: i * 1 // Adjust this value for the desired effect
             });
+
         }
     }
 
@@ -162,7 +162,7 @@
         width: 100%;
         height: 100vh;
         margin: auto;
-        margin-top: 90px;
+        margin-top: 0px;
         position: center;
         opacity: 0;
         visibility: hidden;
@@ -174,8 +174,8 @@
     .graph_1{
         width: 90%;
         height: 50vh;
-        margin-top: 350px;
-        margin-right:-200px;
+        margin-top: 230px;
+        margin-right:-300px;
         margin-left: 50px;
         margin-bottom: 500px;
         position: relative;

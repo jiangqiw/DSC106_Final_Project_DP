@@ -58,7 +58,7 @@ $: tweenedData_point = points.features.map((point, i) => ({
     //   tweenedY.set(cities.features.map((city, i) => height / 2 + i * 20));
     // }
 
-    if ( index === 2) {
+    if ( index === 0) {
       tweenedX.set(
         cities.features.map((city) => projection(city.geometry.coordinates)[0])
       );
@@ -73,7 +73,7 @@ $: tweenedData_point = points.features.map((point, i) => ({
       );
     }
 
-    if ( index > 2 || index < 2) {
+    if ( index > 0 || index < 0) {
       tweenedX.set(
         cities.features.map((city) => 0),
       );

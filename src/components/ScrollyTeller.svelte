@@ -12,13 +12,19 @@
   import AgePointsAlive from "./age_points_survival.svelte";
   import FareAmountPointsPage from "./fare_amount_points_page.svelte";
   import FareAmountPointsAlivePage from "./fare_amount_points_alive_page.svelte";
+  import { onMount } from 'svelte';
 
+  let htmlContent = '';
   let count, index, offset, progress;
   let width, height;
   let currentVisualization = 'gender';
   let pclassVisualization = 'class1';
   let ageVisualization = 'age';
-  let fareVisualization = 'fare'
+  let fareVisualization = 'fare';
+  let showCasualtyLegend_gender = false;
+  let showCausaltyLegend_pclass = false;
+  let showCasultyLegend_age = false;
+  let showCasualtyLegend_fare = false;
 
   // let adjustedWidth = width * 1;
   // let adjustedHeight = height * 1;
@@ -45,22 +51,31 @@
 
   $: projection = geoMercator().fitSize([width * 1.05, height * 1.05], geoJsonToFit);
 
+  onMount(async () => {
+    const response = await fetch("src/components/index.html");
+    htmlContent = await response.text();
+  });
+
   function toggleVisualization_pclass() {
     // If the current visualization is 'gender', switch to 'gender_alive'
     if (pclassVisualization === 'class1') {
         pclassVisualization = 'casualty';
+        showCausaltyLegend_pclass = true;
     } else {
         // In any other case (including when it's 'gender_alive' or any 'pclass' state), switch back to 'gender'
         pclassVisualization = 'class1';
+        showCausaltyLegend_pclass = false;
     }
 }
   function toggleVisualization_age() {
       // If the current visualization is 'gender', switch to 'gender_alive'
       if (ageVisualization === 'age') {
           ageVisualization = 'casualty';
+          showCasultyLegend_age = true;
       } else {
           // In any other case (including when it's 'gender_alive' or any 'pclass' state), switch back to 'gender'
           ageVisualization = 'age';
+          showCasultyLegend_age = false;
       }
   }
 
@@ -68,9 +83,11 @@
       // If the current visualization is 'gender', switch to 'gender_alive'
       if (fareVisualization === 'fare') {
           fareVisualization = 'casualty';
+          showCasualtyLegend_fare = true;
       } else {
           // In any other case (including when it's 'gender_alive' or any 'pclass' state), switch back to 'gender'
           fareVisualization = 'fare';
+          showCasualtyLegend_fare = false;
       }
   }
 
@@ -79,20 +96,27 @@
     // If the current visualization is 'gender', switch to 'gender_alive'
     if (currentVisualization === 'gender') {
         currentVisualization = 'casualty';
+        showCasualtyLegend_gender = true;
     } else {
         // In any other case (including when it's 'gender_alive' or any 'pclass' state), switch back to 'gender'
         currentVisualization = 'gender';
+        showCasualtyLegend_gender = false;
     }
 }
 
   let currentBackground = '/titanic.jpeg'; // Default background image
 
   // Update the background image based on the current page index
-  $: if (index === 4) { // Assuming pages are 0-indexed, so page 5 has an index of 4
+  $: if (index === 5) { // Assuming pages are 0-indexed, so page 5 has an index of 4
     currentBackground = '/gender.jpg';
-  } else if (index === 6){
+  } else if (index === 1){
     currentBackground = '/Pclass.jpg';
-  } else {
+  } else if (index === 7){
+    currentBackground = '/Age.jpg';
+  } else if (index === 3){
+    currentBackground = '/Fare.jpg';
+  }
+  else {
     currentBackground = '/titanic.jpeg';
   }
 </script>
@@ -233,6 +257,10 @@
     background-color: red;
 }
 
+.dot-green {
+    background-color: green;
+}
+
 .dot-lightblue {
     background-color: blue;
     opacity: 0.3;
@@ -241,6 +269,31 @@
 .dot-lightred {
     background-color: red;
     opacity: 0.3;
+}
+
+.dot-lightgreen {
+    background-color: green;
+    opacity: 0.3;
+}
+
+.aesthetic-button {
+    background-color: #a1620a; /* Green background */
+    color: white; /* White text */
+    padding: 15px 32px; /* Some padding */
+    font-size: 16px; /* Text size */
+    border: none; /* No borders */
+    border-radius: 5px; /* Rounded corners */
+    cursor: pointer; /* Pointer cursor on hover */
+    transition: background-color 0.3s ease; /* Smooth transition for hover effect */
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2); /* Subtle shadow */
+}
+
+.aesthetic-button:hover {
+    background-color: #45a049; /* Darker shade of green on hover */
+}
+
+.aesthetic-button:focus {
+    outline: none; /* Removes outline on focus for aesthetics, ensure accessibility in other ways */
 }
 
 
@@ -278,7 +331,7 @@
 </div>
 
   <div class="foreground" slot="foreground">
-    <section>This is the first section.
+    <!-- <section>This is the first section.
       <div class="background-info">
         On April 15, 1912, the RMS Titanic, a marvel of early 20th-century engineering, embarked on its maiden voyage from Southampton to New York City. However, this journey was tragically cut short after the ship collided with an iceberg in the North Atlantic. This disaster resulted in the loss of over 1,500 lives, making it one of the deadliest peacetime maritime disasters in history. The Titanic's sinking has since captivated the public imagination, leading to numerous investigations, studies, and narratives that seek to understand the circumstances and decisions that led to such high mortality. Factors such as social class, gender, age, and access to lifeboats have been extensively analyzed to comprehend the disparities in survival rates among the passengers.
       </div>
@@ -287,66 +340,37 @@
       <div class="reminder">
         Please Full Screen to Gain Maximized Experience
       </div>
-      </section>
-    <section>This is the second section.</section>
-    <section>This is the third section.</section>
-    <section>This is the fourth section.</section>
+      </section> -->
+    <!-- <section>This is the second section.</section> -->
+    <section style="font-size: 30px; font-family: 'Georgia', serif;">The Maiden Journey of Dreams and Tragedy</section>
+    <section style="font-size: 30px; font-family: 'Georgia', serif;">Proceeding to the Passenger class aspect Analysis</section>
     <section>
-      This is the fifth section.
-      <div class = "button-container">
-        <button on:click={toggleVisualization_gender}>Click to see casualty</button>
-        <p></p>
-      </div>
-      <p></p>
-      <div class="legend">
-        <div class="legend-item">
-            <span class="dot dot-blue"></span> Blue Dot - [Male]
-        </div>
-        <div class="legend-item">
-            <span class="dot dot-red"></span> Red Dot - [Female]
-        </div>
-        <div class="legend-item">
-          <span class="dot dot-lightblue"></span> Light Blue Dot - [Male dead]
-        </div>
-        <div class="legend-item">
-            <span class="dot dot-lightred"></span> Light Red Dot - [Female dead]
-        </div>
-      </div>
-      <div class="visualization-container">
-        <div transition:fade>
-          <GenderPointsPage {index} {currentVisualization} />
-        </div>
-        <div transition:fade>
-          <GenderPointsAlive {index} {currentVisualization} />   
-        </div>
-        <!-- <div>
-          <Pclass_1Page {index} {currentVisuallization_pclass} />
-        </div> -->
-      </div>
-    </section>
-    <section>
-      Hi
-    </section>
-    <section>
-      This is the sixth section.
       <div class = "button-container_1">
-        <button on:click={toggleVisualization_pclass}>Click to see casualty</button>
+        <button class = "aesthetic-button" on:click={toggleVisualization_pclass}>Switch Visualization</button>
         <!-- <button on:click={toggleVisualization}>Go to age report</button> -->
       </div>
       <p></p>
       <div class="legend">
         <div class="legend-item">
-            <span class="dot dot-blue"></span> Blue Dot - [Description for blue dots]
+            <span class="dot dot-blue"></span> Blue Dot - [Class-1 passenger]
         </div>
         <div class="legend-item">
-            <span class="dot dot-red"></span> Red Dot - [Description for red dots]
+            <span class="dot dot-red"></span> Red Dot - [Class-2 passenger]
         </div>
         <div class="legend-item">
-          <span class="dot dot-lightblue"></span> Light Blue Dot - [Description for blue dots]
+          <span class="dot dot-green"></span> Green Dot - [Class-3 passenger]
         </div>
-        <div class="legend-item">
-            <span class="dot dot-lightred"></span> Light Red Dot - [Description for red dots]
+        {#if showCausaltyLegend_pclass}
+          <div class="legend-item">
+              <span class="dot dot-lightblue"></span> Light Blue Dot - [Class-1 passenger dead]
+          </div>
+          <div class="legend-item">
+              <span class="dot dot-lightred"></span> Light Red Dot - [Class-2 passenger dead]
+          </div>
+          <div class="legend-item">
+            <span class="dot dot-lightgreen"></span> Green Dot - [Class-3 passenger dead]
         </div>
+        {/if}
       </div>
       <p></p>
       <div class="visualization-container">
@@ -361,14 +385,105 @@
         </div> -->
       </div>
     </section>
+    <section style="font-size: 30px; font-family: 'Georgia', serif;">Proceeding to the Fare Amount aspect Analysis</section>
     <section>
-      Hi
+      <div class = "button-container_3">
+        <button class = "aesthetic-button" on:click={toggleVisualization_fare}>Switch Visualization</button>
+        <div class="legend">
+          <div class="legend-item">
+            <span class="dot dot-blue"></span> Blue Dot - [less than 30]
+        </div>
+        <div class="legend-item">
+            <span class="dot dot-red"></span> Red Dot - [30 to 100]
+        </div>
+        <div class="legend-item">
+          <span class="dot dot-green"></span> Green Dot - [greater than 100]
+        </div>
+          {#if showCasualtyLegend_fare}
+          <div class="legend-item">
+            <span class="dot dot-lightblue"></span> Light Blue Dot - [less than 30 dead]
+          </div>
+          <div class="legend-item">
+              <span class="dot dot-lightred"></span> Light Red Dot - [30 yrs to 100 dead]
+          </div>
+          <div class="legend-item">
+            <span class="dot dot-lightgreen"></span> Green Dot - [greater than 100 dead]
+        </div>
+          {/if}
+        </div>
+        <div class="visualization-container">
+          <div transition:fade>
+            <FareAmountPointsPage {index} {fareVisualization} />
+          </div>
+          <div transition:fade>
+            <FareAmountPointsAlivePage {index} {fareVisualization} />   
+          </div>
+
+      </div>
     </section>
+    <section style="font-size: 30px; font-family: 'Georgia', serif;">Proceeding to the Gender aspect Analysis</section>
     <section>
-      This is the seventh section.
+      <div class = "button-container">
+        <button class="aesthetic-button" on:click={toggleVisualization_gender}>Switch Visualization</button>
+        <p></p>
+      </div>
+      <p></p>
+      <div class="legend">
+        <div class="legend-item">
+            <span class="dot dot-blue"></span> Blue Dot - [Male]
+        </div>
+        <div class="legend-item">
+            <span class="dot dot-red"></span> Red Dot - [Female]
+        </div>
+        {#if showCasualtyLegend_gender}
+          <div class="legend-item">
+              <span class="dot dot-lightblue"></span> Light Blue Dot - [Male dead]
+          </div>
+          <div class="legend-item">
+              <span class="dot dot-lightred"></span> Light Red Dot - [Female dead]
+          </div>
+        {/if}
+      </div>
+      
+      <div class="visualization-container">
+        <div transition:fade>
+          <GenderPointsPage {index} {currentVisualization} />
+        </div>
+        <div transition:fade>
+          <GenderPointsAlive {index} {currentVisualization} />   
+        </div>
+        <!-- <div>
+          <Pclass_1Page {index} {currentVisuallization_pclass} />
+        </div> -->
+      </div>
+    </section>
+    <section style="font-size: 30px; font-family: 'Georgia', serif;">Proceeding to the Age aspect Analysis</section>
+    <section>
       <div class = "button-container_2">
-        <button on:click={toggleVisualization_age}>Click to see casualty</button>
+        <button class = "aesthetic-button" on:click={toggleVisualization_age}>Switch Visualization</button>
         <!-- <button on:click={toggleVisualization}>Go to age report</button> -->
+      </div>
+      <div class="legend">
+        <div class="legend-item">
+            <span class="dot dot-blue"></span> Blue Dot - [less than 15 yrs]
+        </div>
+        <div class="legend-item">
+            <span class="dot dot-red"></span> Red Dot - [15 yrs to 40 yrs]
+        </div>
+        <div class="legend-item">
+          <span class="dot dot-green"></span> Green Dot - [greater tahn 40 yrs]
+        </div>
+        {#if showCasultyLegend_age}
+        <div class="legend-item">
+          <span class="dot dot-lightblue"></span> Light Blue Dot - [less than 15 yrs dead]
+      </div>
+      <div class="legend-item">
+          <span class="dot dot-lightred"></span> Light Red Dot - [15 yrs to 40 yrs dead]
+      </div>
+      <div class="legend-item">
+        <span class="dot dot-lightgreen"></span> Green Dot - [greater than 40 yrs dead]
+    </div>
+        {/if}
       </div>
       <div class="visualization-container">
         <div transition:fade>
@@ -382,23 +497,7 @@
         </div> -->
       </div>
     </section>
-    <section>
-      Hi
-    </section>
-    <section>
-      This is the eighth section.
-      <div class = "button-container_3">
-        <button on:click={toggleVisualization_fare}>Click to see casualty</button>
-        <div class="visualization-container">
-          <div transition:fade>
-            <FareAmountPointsPage {index} {fareVisualization} />
-          </div>
-          <div transition:fade>
-            <FareAmountPointsAlivePage {index} {fareVisualization} />   
-          </div>
-
-      </div>
-    </section>
+    
   </div>
 
 </Scroller>

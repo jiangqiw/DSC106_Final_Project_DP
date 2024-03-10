@@ -1,0 +1,618 @@
+window.addEventListener('load', function() {
+	var chartBox = document.querySelector("#chartBox");
+	var chartBoxes2 = document.querySelector("#chartBoxes2");
+	
+	var menu1 = $("#menu1");
+	var menu2 = $("#menu2");
+	var menu3 = $("#menu3");
+	var menu4 = $("#menu4");
+	
+	var genderBox = $("#genderBox");
+	var pclassBox = $("#pclassBox");
+	var ageBox = $("#ageBox");
+	var fareBox = $("#fareBox");
+	
+	var maleBox1 = document.querySelector("#maleBox1");
+	var femaleBox1 = document.querySelector("#femaleBox1");
+	
+	var title = document.querySelector("#title");
+	var changeDeath = $("#changeDeath");
+	var changeNumber = $("#changeNumber");
+	
+	var deathMan = $("#deathMan");
+	var aliveMan = $("#aliveMan");
+	var deathFemale = $("#deathFemale");
+	var aliveFemale = $("#aliveFemale");
+	
+	
+	menu1.on("click",function(){
+		menu1.addClass("active");
+		menu2.removeClass("active");
+		menu3.removeClass("active");
+		menu4.removeClass("active");
+		$("#title").text("人数展示");
+		$("#changeDeath").show();
+		$("#changeNumber").hide();
+		genderBox.show();
+		pclassBox.hide();
+		ageBox.hide();
+		fareBox.hide();
+	});
+	
+	
+	var class1 = $("#class1");
+	var class2 = $("#class2");
+	var class3 = $("#class3");
+	var class4 = $("#class4");
+	var class5 = $("#class5");
+	var class6 = $("#class6");
+	
+	menu2.on("click",function(){
+		menu2.addClass("active");
+		menu1.removeClass("active");
+		menu3.removeClass("active");
+		menu4.removeClass("active");
+		genderBox.hide();
+		pclassBox.show();
+		ageBox.hide();
+		fareBox.hide();
+		$("#title").text("人数展示");
+		$("#changeDeath").show();
+		$("#changeNumber").hide();
+		initPclass();
+		$("#pclassBox1").show();
+		$("#pclassBox2").hide();
+	});
+	
+	menu3.on("click",function(){
+		menu3.addClass("active");
+		menu1.removeClass("active");
+		menu2.removeClass("active");
+		menu4.removeClass("active");
+		$("#title").text("人数展示");
+		$("#changeDeath").show();
+		$("#changeNumber").hide();
+		
+		genderBox.hide();
+		pclassBox.hide();
+		ageBox.show();
+		fareBox.hide();
+		
+		initAgeData();
+		$("#ageBox1").show();
+		$("#ageBox2").hide();
+	});
+	
+	menu4.on("click",function(){
+		menu4.addClass("active");
+		menu1.removeClass("active");
+		menu2.removeClass("active");
+		menu3.removeClass("active");
+		$("#title").text("人数展示");
+		$("#changeDeath").show();
+		$("#changeNumber").hide();
+		
+		genderBox.hide();
+		pclassBox.hide();
+		ageBox.hide();
+		fareBox.show();
+		
+		initFareData();
+	});
+
+	
+	
+	changeDeath.on("click",function(){
+		$("#title").text("死亡展示");
+		$(this).hide();
+		$("#changeNumber").show();
+		if($(menu1).hasClass("active")){
+			$("#manBox1").hide();
+			$("#manBox2").show();
+			$("#cahrtBox").hide();
+			chartBoxes2.style.display="block";
+			initGender2();
+			
+		}else if($(menu2).hasClass("active")){
+			$("#pclassBox1").hide();
+			$("#pclassBox2").show();
+			initPclass2();
+		}else if($(menu3).hasClass("active")){
+			$("#ageBox1").hide();
+			$("#ageBox2").show();
+			initAgeData2();
+		}else if($(menu4).hasClass("active")){
+			$("#fareBox1").hide();
+			$("#fareBox2").show();
+			initFareData2();
+		}
+		
+		
+		
+		
+	});
+	changeNumber.on("click",function(){
+		$("#title").text("人数展示");
+		$(this).hide();
+		$("#changeDeath").show();
+		if($(menu1).hasClass("active")){
+			$("#manBox2").hide();
+			$("#manBox1").show();
+			$("#cahrtBox").show();
+			chartBoxes2.style.display="none";
+			initGender();
+			
+		}else if($(menu2).hasClass("active")){
+			$("#pclassBox2").hide();
+			$("#pclassBox1").show();
+			initPclass();
+		}else if($(menu3).hasClass("active")){
+			$("#ageBox1").show();
+			$("#ageBox2").hide();
+			initAgeData();
+		}else if($(menu4).hasClass("active")){
+			$("#fareBox1").show();
+			$("#fareBox2").hide();
+			initFareData();
+		}
+		
+	});
+	
+	var fare1 = $("#fare1");
+	var fare2 = $("#fare2");
+	var fare3 = $("#fare3");
+	var deathFare4 = $("#deathFare4");
+	var aliveFare4 = $("#aliveFare4");
+	var deathFare5 = $("#deathFare5");
+	var aliveFare5 = $("#aliveFare5");
+	var deathFare6 = $("#deathFare6");
+	var aliveFare6 = $("#aliveFare6");
+	function initFareData2(){
+		deathFare4.empty();
+		aliveFare4.empty();
+		deathFare5.empty();
+		aliveFare5.empty();
+		deathFare6.empty();
+		aliveFare6.empty();
+		for(var i=0;i<61;i++){
+			let html = "";
+			if((i+1)%25==0){
+				html = "</br><strong class='txt_blue'>.</strong>&emsp;";
+			}else{
+				html = "<strong class='txt_blue'>.</strong>&emsp;";
+			}
+			setTimeout(function(){
+				aliveFare4.append($(html));
+			},1000);
+		}
+		for(var i=0;i<124;i++){
+			let html = "";
+			if((i+1)%25==0){
+				html = "</br><strong>.</strong>&emsp;";
+			}else{
+				html = "<strong>.</strong>&emsp;";
+			}
+			setTimeout(function(){
+				deathFare4.append($(html));
+			},500);
+		}
+		for(var i=0;i<298;i++){
+			let html = "";
+			if((i+1)%25==0){
+				html = "</br><strong class='txt_yellow'>.</strong>&emsp;";
+			}else{
+				html = "<strong class='txt_yellow'>.</strong>&emsp;";
+			}
+			setTimeout(function(){
+				aliveFare5.append($(html));
+			},2000);
+		}
+		for(var i=0;i<660;i++){
+			let html = "";
+			if((i+1)%25==0){
+				html = "</br><strong>.</strong>&emsp;";
+			}else{
+				html = "<strong >.</strong>&emsp;";
+			}
+			setTimeout(function(){
+				deathFare5.append($(html));
+			},1500);
+		}
+		for(var i=0;i<60;i++){
+			let html = "";
+			if((i+1)%25==0){
+				html = "</br><strong class='txt_red'>.</strong>&emsp;";
+			}else{
+				html = "<strong class='txt_red'>.</strong>&emsp;";
+			}
+			setTimeout(function(){
+				aliveFare6.append($(html));
+			},3000);
+		}
+		for(var i=0;i<25;i++){
+			let html = "";
+			if((i+1)%25==0){
+				html = "</br><strong>.</strong>&emsp;";
+			}else{
+				html = "<strong>.</strong>&emsp;";
+			}
+			setTimeout(function(){
+				deathFare6.append($(html));
+			},2500);
+		}
+	}
+	
+	function initFareData(){
+		fare1.empty();
+		fare2.empty();
+		fare3.empty();
+		for(var i=0;i<938;i++){
+			let html = "";
+			if((i+1)%25==0){
+				html = "</br><strong class='txt_blue'>.</strong>&emsp;";
+			}else{
+				html = "<strong class='txt_blue'>.</strong>&emsp;";
+			}
+			setTimeout(function(){
+				fare1.append($(html));
+			},500);
+		}
+		for(var i=0;i<266;i++){
+			let html = "";
+			if((i+1)%25==0){
+				html = "</br><strong class='txt_yellow'>.</strong>&emsp;";
+			}else{
+				html = "<strong class='txt_yellow'>.</strong>&emsp;";
+			}
+			setTimeout(function(){
+				fare2.append($(html));
+			},1000);
+		}
+		for(var i=0;i<85;i++){
+			let html = "";
+			if((i+1)%25==0){
+				html = "</br><strong class='txt_red'>.</strong>&emsp;";
+			}else{
+				html = "<strong class='txt_red'>.</strong>&emsp;";
+			}
+			setTimeout(function(){
+				fare3.append($(html));
+			},1500);
+		}
+	}
+	
+	var age1 = $("#age1");
+	var age2 = $("#age2");
+	var age3 = $("#age3");
+	var deathAge4 = $("#deathAge4");
+	var aliveAge4 = $("#aliveAge4");
+	var deathAge5 = $("#deathAge5");
+	var aliveAge5 = $("#aliveAge5");
+	var deathAge6 = $("#deathAge6");
+	var aliveAge6 = $("#aliveAge6");
+	function initAgeData(){
+		age1.empty();
+		age2.empty();
+		age3.empty();
+		for(var i=0;i<109;i++){
+			let html = "";
+			if((i+1)%25==0){
+				html = "</br><strong class='txt_green'>.</strong>&emsp;";
+			}else{
+				html = "<strong class='txt_green'>.</strong>&emsp;";
+			}
+			setTimeout(function(){
+				age1.append($(html));
+			},500);
+		}
+		for(var i=0;i<710;i++){
+			let html = "";
+			if((i+1)%25==0){
+				html = "</br><strong class='txt_blue'>.</strong>&emsp;";
+			}else{
+				html = "<strong class='txt_blue'>.</strong>&emsp;";
+			}
+			setTimeout(function(){
+				age2.append($(html));
+			},500);
+		}
+		for(var i=0;i<227;i++){
+			let html = "";
+			if((i+1)%25==0){
+				html = "</br><strong class='txt_red'>.</strong>&emsp;";
+			}else{
+				html = "<strong class='txt_red'>.</strong>&emsp;";
+			}
+			setTimeout(function(){
+				age3.append($(html));
+			},500);
+		}
+	}
+	
+	function initAgeData2(){
+		deathAge4.empty();
+		aliveAge4.empty();
+		deathAge5.empty();
+		aliveAge5.empty();
+		deathAge6.empty();
+		aliveAge6.empty();
+		for(var i=0;i<61;i++){
+			let html = "";
+			if((i+1)%25==0){
+				html = "</br><strong class='txt_green'>.</strong>&emsp;";
+			}else{
+				html = "<strong class='txt_green'>.</strong>&emsp;";
+			}
+			setTimeout(function(){
+				aliveAge4.append($(html));
+			},500);
+		}
+		for(var i=0;i<48;i++){
+			let html = "";
+			if((i+1)%25==0){
+				html = "</br><strong>.</strong>&emsp;";
+			}else{
+				html = "<strong>.</strong>&emsp;";
+			}
+			setTimeout(function(){
+				deathAge4.append($(html));
+			},1000);
+		}
+		for(var i=0;i<276;i++){
+			let html = "";
+			if((i+1)%25==0){
+				html = "</br><strong class='txt_blue'>.</strong>&emsp;";
+			}else{
+				html = "<strong class='txt_blue'>.</strong>&emsp;";
+			}
+			setTimeout(function(){
+				aliveAge5.append($(html));
+			},500);
+		}
+		for(var i=0;i<434;i++){
+			let html = "";
+			if((i+1)%25==0){
+				html = "</br><strong>.</strong>&emsp;";
+			}else{
+				html = "<strong >.</strong>&emsp;";
+			}
+			setTimeout(function(){
+				deathAge5.append($(html));
+			},1000);
+		}
+		for(var i=0;i<90;i++){
+			let html = "";
+			if((i+1)%25==0){
+				html = "</br><strong class='txt_red'>.</strong>&emsp;";
+			}else{
+				html = "<strong class='txt_red'>.</strong>&emsp;";
+			}
+			setTimeout(function(){
+				aliveAge6.append($(html));
+			},500);
+		}
+		for(var i=0;i<137;i++){
+			let html = "";
+			if((i+1)%25==0){
+				html = "</br><strong>.</strong>&emsp;";
+			}else{
+				html = "<strong>.</strong>&emsp;";
+			}
+			setTimeout(function(){
+				deathAge6.append($(html));
+			},1000);
+		}
+	}
+	
+	function initPclass(){
+		class1.empty();
+		class2.empty();
+		class3.empty();
+		for(var i=0;i<323;i++){
+			let html = "";
+			if((i+1)%25==0){
+				html = "</br><strong>.</strong>&emsp;";
+			}else{
+				html = "<strong>.</strong>&emsp;";
+			}
+			setTimeout(function(){
+				class1.append($(html));
+			},500);
+		}
+		for(var i=0;i<277;i++){
+			let html = "";
+			if((i+1)%25==0){
+				html = "</br><strong class='txt_blue'>.</strong>&emsp;";
+			}else{
+				html = "<strong class='txt_blue'>.</strong>&emsp;";
+			}
+			setTimeout(function(){
+				class2.append($(html));
+			},1000);
+		}
+		for(var i=0;i<709;i++){
+			let html = "";
+			if((i+1)%25==0){
+				html = "</br><strong class='txt_red'>.</strong>&emsp;";
+			}else{
+				html = "<strong class='txt_red'>.</strong>&emsp;";
+			}
+			setTimeout(function(){
+				class3.append($(html));
+			},1500);
+		}
+	}
+	
+	var deathClass4 = $("#deathClass4");
+	var aliveClass4 = $("#aliveClass4");
+	var deathClass5 = $("#deathClass5");
+	var aliveClass5 = $("#aliveClass5");
+	var deathClass6 = $("#deathClass6");
+	var aliveClass6 = $("#aliveClass6");
+	function initPclass2(){
+		deathClass4.empty();
+		aliveClass4.empty();
+		deathClass5.empty();
+		aliveClass5.empty();
+		deathClass6.empty();
+		aliveClass6.empty();
+		for(var i=0;i<200;i++){
+			let html = "";
+			if((i+1)%25==0){
+				html = "</br><strong class='txt_blue'>.</strong>&emsp;";
+			}else{
+				html = "<strong class='txt_blue'>.</strong>&emsp;";
+			}
+			setTimeout(function(){
+				aliveClass4.append($(html));
+			},1000);
+		}
+		for(var i=0;i<123;i++){
+			let html = "";
+			if((i+1)%25==0){
+				html = "</br><strong>.</strong>&emsp;";
+			}else{
+				html = "<strong>.</strong>&emsp;";
+			}
+			setTimeout(function(){
+				deathClass4.append($(html));
+			},500);
+		}
+		for(var i=0;i<119;i++){
+			let html = "";
+			if((i+1)%25==0){
+				html = "</br><strong class='txt_blue'>.</strong>&emsp;";
+			}else{
+				html = "<strong class='txt_blue'>.</strong>&emsp;";
+			}
+			setTimeout(function(){
+				aliveClass5.append($(html));
+			},2000);
+		}
+		for(var i=0;i<158;i++){
+			let html = "";
+			if((i+1)%25==0){
+				html = "</br><strong>.</strong>&emsp;";
+			}else{
+				html = "<strong >.</strong>&emsp;";
+			}
+			setTimeout(function(){
+				deathClass5.append($(html));
+			},1500);
+		}
+		for(var i=0;i<181;i++){
+			let html = "";
+			if((i+1)%25==0){
+				html = "</br><strong class='txt_blue'>.</strong>&emsp;";
+			}else{
+				html = "<strong class='txt_blue'>.</strong>&emsp;";
+			}
+			setTimeout(function(){
+				aliveClass6.append($(html));
+			},3000);
+		}
+		for(var i=0;i<528;i++){
+			let html = "";
+			if((i+1)%25==0){
+				html = "</br><strong>.</strong>&emsp;";
+			}else{
+				html = "<strong>.</strong>&emsp;";
+			}
+			setTimeout(function(){
+				deathClass6.append($(html));
+			},2500);
+		}
+	}
+	
+	function initGender(){
+		$(maleBox1).empty();
+		$(femaleBox1).empty();
+		//男性人数
+		for(var i=0;i<843;i++){
+			let html = "";
+			if((i+1)%50==0){
+				html = "</br><strong class='txt_blue'>.</strong>&emsp;";
+			}else{
+				html = "<strong class='txt_blue'>.</strong>&emsp;";
+			}
+			setTimeout(function(){
+				$(maleBox1).append($(html));
+			},500);
+		}
+		//女性人数
+		for(var i=0;i<466;i++){
+			let html = "";
+			if((i+1)%50==0){
+				html = "</br><strong class='txt_red'>.</strong>&emsp;";
+			}else{
+				html = "<strong class='txt_red'>.</strong>&emsp;";
+			}
+			setTimeout(function(){
+				$(femaleBox1).append($(html));
+			},1000);
+		}
+	}
+	
+	function initGender2(){
+		$(deathMan).empty();
+		$(aliveMan).empty();
+		$(deathFemale).empty();
+		$(aliveFemale).empty();
+		//死亡男性人数
+		for(var i=0;i<682;i++){
+			let html = "";
+			if((i+1)%25==0){
+				html = "</br><strong>.</strong>&emsp;";
+			}else{
+				html = "<strong>.</strong>&emsp;";
+			}
+			setTimeout(function(){
+				deathMan.append($(html));
+			},500);
+		}
+		//活着男性人数
+		for(var i=0;i<161;i++){
+			let html = "";
+			if((i+1)%25==0){
+				html = "</br><strong class='txt_blue'>.</strong>&emsp;";
+			}else{
+				html = "<strong class='txt_blue'>.</strong>&emsp;";
+			}
+			setTimeout(function(){
+				aliveMan.append($(html));
+			},1000);
+		}
+		
+		//死亡男性人数
+		for(var i=0;i<127;i++){
+			let html = "";
+			if((i+1)%25==0){
+				html = "</br><strong>.</strong>&emsp;";
+			}else{
+				html = "<strong>.</strong>&emsp;";
+			}
+			setTimeout(function(){
+				deathFemale.append($(html));
+			},2000);
+		}
+		//活着男性人数
+		for(var i=0;i<466;i++){
+			let html = "";
+			if((i+1)%25==0){
+				html = "</br><strong class='txt_red'>.</strong>&emsp;";
+			}else{
+				html = "<strong class='txt_red'>.</strong>&emsp;";
+			}
+			setTimeout(function(){
+				aliveFemale.append($(html));
+			},1500);
+		}
+	}
+	
+	
+	
+	initGender();
+	
+	
+
+});

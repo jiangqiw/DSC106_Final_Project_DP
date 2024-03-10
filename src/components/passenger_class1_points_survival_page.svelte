@@ -29,12 +29,12 @@
             points.push({
                 x: x * spacing + radius,
                 y: y * spacing + radius,
-                isTransparent: (i > 324 && i < 324 + 76) || (i > 324+108+277+1 && i < 324+108+277+91),
+                isTransparent: (i > 324 && i < 324 + 76 - 10) || (i > 324+108+277+1 && i < 324+108+277+91 - 20),
                 isBlue: i < 325, // pclass0
                 isBlueDead: (i > 200 && i < 325),
-                isRed: i > 324 + 75 && i < 324+108+277 + 2, // pclass1
+                isRed: i > 324 + 75 - 10 && i < 324+108+277 + 2, // pclass1
                 isRedDead: i > 324 + 75 + 119 && i < 324+108+277 + 2,
-                isGreen: i < 1309 && i > 324+98+277+1+98, // pclass2
+                isGreen: i < 1309 && i > 324+98+277+1+98 - 20, // pclass2
                 isGreenDead: i > 324+98+277+1+98 + 181 && i < 1309 + 76 + 90,
                 // Increment delay for each point, adjusting the multiplier as needed
                 // animationDelay: i * 5 // Adjust this value for the desired effect
@@ -44,7 +44,7 @@
 
     let isVisible = false;
     // $: isVisible = index === 5 && (currentVisuallization_pclass === 'class1');
-    $: isVisible = index === 6 && (pclassVisualization === 'casualty');
+    $: isVisible = index === 2 && (pclassVisualization === 'casualty');
 
     let pieData = [
         { value: 61.9, color: 'blue' },
@@ -123,7 +123,7 @@
 </script>
 
 <div class="graph-container" class:visible={isVisible}>
-    {#if index === 6 && pclassVisualization === 'casualty'}
+    {#if index === 2 && pclassVisualization === 'casualty'}
         <!-- <div class="legend">
             <div class="legend-item">
                 <span class="dot dot-blue"></span> Blue Dot - [Description for blue dots]

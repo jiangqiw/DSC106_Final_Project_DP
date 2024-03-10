@@ -29,19 +29,19 @@
             points.push({
                 x: x * spacing + radius,
                 y: y * spacing + radius,
-                isTransparent: (i > 324 && i < 324 + 76) || (i > 324+108+277+1 && i < 324+108+277+91),
+                isTransparent: (i > 324 && i < 324 + 66) || (i > 324+108+277+1 && i < 324+108+277+91 - 20),
                 isBlue: i < 325, // pclass0
-                isRed: i > 324 + 75 && i < 324+108+277 + 2, // pclass1
-                isGreen: i > 324+98+277+1+98, // pclass2
+                isRed: i > 324 + 65 && i < 324+108+277 + 2, // pclass1
+                isGreen: i > 324+98+277+1+98-20, // pclass2
                 // Increment delay for each point, adjusting the multiplier as needed
-                animationDelay: i * 5 // Adjust this value for the desired effect
+                animationDelay: i * 1 // Adjust this value for the desired effect
             });
         }
     }
 
     let isVisible = false;
     // $: isVisible = index === 5 && (currentVisuallization_pclass === 'class1');
-    $: isVisible = index === 6 && (pclassVisualization === 'class1');
+    $: isVisible = index === 2 && (pclassVisualization === 'class1');
 
     let pieData = [
         { value: 24.7, color: 'blue' },
@@ -73,7 +73,7 @@
 
 
 <div class="visualization-container" class:visible={isVisible}>
-    {#if index === 6}
+    {#if index === 2}
         <svg class = "graph" width = 75% height = "90vh" class:visible={isVisible}>
             {#each points as point, i}
             <circle cx={point.x} cy={point.y} r="4" 
@@ -157,10 +157,9 @@
     .graph_1{
         width: 90%;
         height: 50vh;
-        margin: 10;
-        margin-top: 330px;
-        margin-right:-200px;
-        margin-left: 100px;
+        margin-top: 230px;
+        margin-right:-300px;
+        margin-left: 50px;
         margin-bottom: 500px;
         position: relative;
         opacity: 0;

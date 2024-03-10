@@ -21,10 +21,10 @@
             points.push({
                 x: x * spacing + radius,
                 y: y * spacing + radius,
-                isTransparent: i > 842 && i < 842 + 108,
+                isTransparent: i > 842 && i < 842 + 88,
                 isBlue: i < 162, // male
                 isBlueDead: (i < 843 && i > 161),
-                isRed: (i > 841+108 && i < 1183+108), // female
+                isRed: (i > 841+88 && i < 1183+108), // female
                 isRedDead: i > 1182 + 108,
                 // Increment delay for each point, adjusting the multiplier as needed
                 // animationDelay: i * 5 // Adjust this value for the desired effect
@@ -33,7 +33,7 @@
     });
 
     let isVisible = false;
-    $: isVisible = index === 4 && currentVisualization === 'casualty';
+    $: isVisible = index === 6 && currentVisualization === 'casualty';
 
     let pieData = [
         { value: 19.1, color: 'blue' },
@@ -89,7 +89,7 @@
 </script>
 
 <div class="graph-container" class:visible={isVisible}>
-    {#if index === 4}
+    {#if index === 6}
         <!-- Point Graph: Adjust the width to allow space for the pie chart -->
         <svg class="graph" width="75%" height="90vh" class:visible={isVisible}>
             {#each points as point, i}
