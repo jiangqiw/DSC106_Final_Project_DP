@@ -119,7 +119,7 @@
   }
 
   pathIndex++;
-  setTimeout(animateDot, 2500); // Adjust timing as needed
+  setTimeout(animateDot, 1000); // Adjust timing as needed
 }
 
   function startAnimation() {

@@ -308,7 +308,7 @@
 
 </style>
 
-<header>Surviving the Titanic: The Role of Age, Gender, Class, and Occupation</header>
+<header>Surviving the Titanic: The Role of Class, Fare, Gender, and Age</header>
 
 <Scroller
   top={0.0}
@@ -352,23 +352,23 @@
       <p></p>
       <div class="legend">
         <div class="legend-item">
-            <span class="dot dot-blue"></span> Blue Dot - [Class-1 passenger]
+            <span class="dot dot-blue"></span> Blue - [Class-1 passenger]
         </div>
         <div class="legend-item">
-            <span class="dot dot-red"></span> Red Dot - [Class-2 passenger]
+            <span class="dot dot-red"></span> Red - [Class-2 passenger]
         </div>
         <div class="legend-item">
-          <span class="dot dot-green"></span> Green Dot - [Class-3 passenger]
+          <span class="dot dot-green"></span> Green - [Class-3 passenger]
         </div>
         {#if showCausaltyLegend_pclass}
           <div class="legend-item">
-              <span class="dot dot-lightblue"></span> Light Blue Dot - [Class-1 passenger dead]
+              <span class="dot dot-lightblue"></span> Light Blue - [Class-1 passenger dead]
           </div>
           <div class="legend-item">
-              <span class="dot dot-lightred"></span> Light Red Dot - [Class-2 passenger dead]
+              <span class="dot dot-lightred"></span> Light Red - [Class-2 passenger dead]
           </div>
           <div class="legend-item">
-            <span class="dot dot-lightgreen"></span> Green Dot - [Class-3 passenger dead]
+            <span class="dot dot-lightgreen"></span> Light Green - [Class-3 passenger dead]
         </div>
         {/if}
       </div>
@@ -391,23 +391,23 @@
         <button class = "aesthetic-button" on:click={toggleVisualization_fare}>Switch Visualization</button>
         <div class="legend">
           <div class="legend-item">
-            <span class="dot dot-blue"></span> Blue Dot - [less than 30]
+            <span class="dot dot-blue"></span> Blue - [less than 30]
         </div>
         <div class="legend-item">
-            <span class="dot dot-red"></span> Red Dot - [30 to 100]
+            <span class="dot dot-red"></span> Red - [30 to 100]
         </div>
         <div class="legend-item">
-          <span class="dot dot-green"></span> Green Dot - [greater than 100]
+          <span class="dot dot-green"></span> Green - [greater than 100]
         </div>
           {#if showCasualtyLegend_fare}
           <div class="legend-item">
-            <span class="dot dot-lightblue"></span> Light Blue Dot - [less than 30 dead]
+            <span class="dot dot-lightblue"></span> Light Blue - [less than 30 dead]
           </div>
           <div class="legend-item">
-              <span class="dot dot-lightred"></span> Light Red Dot - [30 yrs to 100 dead]
+              <span class="dot dot-lightred"></span> Light Red - [30 yrs to 100 dead]
           </div>
           <div class="legend-item">
-            <span class="dot dot-lightgreen"></span> Green Dot - [greater than 100 dead]
+            <span class="dot dot-lightgreen"></span> Light Green - [greater than 100 dead]
         </div>
           {/if}
         </div>
@@ -430,17 +430,17 @@
       <p></p>
       <div class="legend">
         <div class="legend-item">
-            <span class="dot dot-blue"></span> Blue Dot - [Male]
+            <span class="dot dot-blue"></span> Blue - [Male]
         </div>
         <div class="legend-item">
-            <span class="dot dot-red"></span> Red Dot - [Female]
+            <span class="dot dot-red"></span> Red - [Female]
         </div>
         {#if showCasualtyLegend_gender}
           <div class="legend-item">
-              <span class="dot dot-lightblue"></span> Light Blue Dot - [Male dead]
+              <span class="dot dot-lightblue"></span> Light Blue - [Male dead]
           </div>
           <div class="legend-item">
-              <span class="dot dot-lightred"></span> Light Red Dot - [Female dead]
+              <span class="dot dot-lightred"></span> Light Red - [Female dead]
           </div>
         {/if}
       </div>
@@ -465,23 +465,23 @@
       </div>
       <div class="legend">
         <div class="legend-item">
-            <span class="dot dot-blue"></span> Blue Dot - [less than 15 yrs]
+            <span class="dot dot-blue"></span> Blue - [less than 15 yrs]
         </div>
         <div class="legend-item">
-            <span class="dot dot-red"></span> Red Dot - [15 yrs to 40 yrs]
+            <span class="dot dot-red"></span> Red - [15 yrs to 40 yrs]
         </div>
         <div class="legend-item">
-          <span class="dot dot-green"></span> Green Dot - [greater tahn 40 yrs]
+          <span class="dot dot-green"></span> Green - [greater than 40 yrs]
         </div>
         {#if showCasultyLegend_age}
         <div class="legend-item">
-          <span class="dot dot-lightblue"></span> Light Blue Dot - [less than 15 yrs dead]
+          <span class="dot dot-lightblue"></span> Light Blue - [less than 15 yrs dead]
       </div>
       <div class="legend-item">
-          <span class="dot dot-lightred"></span> Light Red Dot - [15 yrs to 40 yrs dead]
+          <span class="dot dot-lightred"></span> Light Red - [15 yrs to 40 yrs dead]
       </div>
       <div class="legend-item">
-        <span class="dot dot-lightgreen"></span> Green Dot - [greater than 40 yrs dead]
+        <span class="dot dot-lightgreen"></span> Light Green - [greater than 40 yrs dead]
     </div>
         {/if}
       </div>
