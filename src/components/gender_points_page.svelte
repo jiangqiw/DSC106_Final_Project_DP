@@ -12,6 +12,16 @@
 
     let chartInstance; // This will be bound to the <div> for ECharts
 
+    let hoveredSegmentIndex = null; // Track the index of the hovered segment
+
+    // Function to calculate the offset for a hovered segment
+    function calculateHoverOffset(midAngle, offset = 10) {
+        return {
+            offsetX: Math.cos(midAngle) * offset,
+            offsetY: Math.sin(midAngle) * offset,
+        };
+    }
+
     function initializeChart() {
         const initializedChart = echarts.init(chartInstance);
         initializedChart.setOption(option1);
@@ -89,17 +99,28 @@
         <!-- <div bind:this={chartInstance} class="pie-chart-container"></div> -->
         
         <!-- Pie Chart: Remove absolute positioning and adjust the width -->
-        <svg class="graph_1" width="25%" height="200" viewBox="-100 -100 200 200" class:visible={isVisible}>
-            {#each pieData as slice}
-            <path d="M 0 0 L {pieRadius * Math.cos(slice.startAngle)} {pieRadius * Math.sin(slice.startAngle)}
-                        A {pieRadius} {pieRadius} 0 {(slice.endAngle - slice.startAngle > Math.PI) ? 1 : 0} 1
-                        {pieRadius * Math.cos(slice.endAngle)} {pieRadius * Math.sin(slice.endAngle)} Z"
-                    fill="{slice.color}"/>
-            <text x={slice.labelX} y={slice.labelY} text-anchor="middle" fill="white" dy=".3em">
-                        {slice.label}
+        <svg class="graph_1" width="25%" height="200" viewBox="-100 -120 220 230" class:visible={isVisible}>
+            {#each pieData as slice, index}
+            <path d={`
+                M 0 0
+                L ${(pieRadius + (hoveredSegmentIndex === index ? 10 : 0)) * Math.cos(slice.startAngle)} 
+                  ${(pieRadius + (hoveredSegmentIndex === index ? 10 : 0)) * Math.sin(slice.startAngle)}
+                A ${(pieRadius + (hoveredSegmentIndex === index ? 10 : 0))} 
+                  ${(pieRadius + (hoveredSegmentIndex === index ? 10 : 0))} 0 
+                  ${(slice.endAngle - slice.startAngle > Math.PI) ? 1 : 0} 1 
+                  ${(pieRadius + (hoveredSegmentIndex === index ? 10 : 0)) * Math.cos(slice.endAngle)} 
+                  ${(pieRadius + (hoveredSegmentIndex === index ? 10 : 0)) * Math.sin(slice.endAngle)} Z`}
+                fill="{slice.color}"
+                on:mouseover={() => { hoveredSegmentIndex = index; }}
+                on:mouseout={() => { hoveredSegmentIndex = null; }} />
+            <text x={(slice.labelX + (hoveredSegmentIndex === index ? calculateHoverOffset(slice.midAngle).offsetX : 0))} 
+                  y={(slice.labelY + (hoveredSegmentIndex === index ? calculateHoverOffset(slice.midAngle).offsetY : 0))}
+                  text-anchor="middle" fill="white" dy=".3em">
+                {slice.label}
             </text>
             {/each}
         </svg>
+        
     {/if}
 </div>
 

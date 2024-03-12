@@ -32,6 +32,25 @@
         }
     });
 
+    let hoveredIndex = null; // Track hover state for the first pie chart
+    let hoveredIndex_1 = null; // Track hover state for the second pie chart
+
+    function handleMouseOver(sliceIndex, chart) {
+        if (chart === 'chart1') {
+            hoveredIndex = sliceIndex;
+        } else if (chart === 'chart2') {
+            hoveredIndex_1 = sliceIndex;
+        }
+    }
+
+    function handleMouseOut(chart) {
+        if (chart === 'chart1') {
+            hoveredIndex = null;
+        } else if (chart === 'chart2') {
+            hoveredIndex_1 = null;
+        }
+    }
+
     let isVisible = false;
     $: isVisible = index === 6 && currentVisualization === 'casualty';
 
@@ -105,14 +124,18 @@
         </svg>
         
         <!-- Pie Chart: Remove absolute positioning and adjust the width -->
-        <svg class="graph_1" width="200" height="200" viewBox="-100 -100 200 200" class:visible={isVisible}>
-            {#each pieData as slice}
+        <svg class="graph_1" width="200" height="200" viewBox="-120 -120 220 200" class:visible={isVisible}>
+            {#each pieData as slice, index}
+            <!-- svelte-ignore a11y-no-static-element-interactions -->
+            <!-- svelte-ignore a11y-mouse-events-have-key-events -->
             <path d="M 0 0 L {pieRadius * Math.cos(slice.startAngle)} {pieRadius * Math.sin(slice.startAngle)}
-                        A {pieRadius} {pieRadius} 0 {(slice.endAngle - slice.startAngle > Math.PI) ? 1 : 0} 1
+                        A {pieRadius + (index === hoveredIndex ? 10 : 0)} {pieRadius + (index === hoveredIndex ? 10 : 0)} 0 
+                        {(slice.endAngle - slice.startAngle > Math.PI) ? 1 : 0} 1
                         {pieRadius * Math.cos(slice.endAngle)} {pieRadius * Math.sin(slice.endAngle)} Z"
                     fill="{slice.color}"
-                    fill-opacity="{slice.opacity}"
-                    />
+                    fill-opacity="{slice.opacity ? slice.opacity : 1}"
+                    on:mouseover={() => handleMouseOver(index, 'chart1')}
+                    on:mouseout={() => handleMouseOut('chart1')} />
             <text x={slice.labelX} y={slice.labelY} text-anchor="middle" fill="white" dy=".3em">
                         {slice.label}
             </text>
