@@ -51,10 +51,6 @@
 
   $: projection = geoMercator().fitSize([width * 1.05, height * 1.05], geoJsonToFit);
 
-  onMount(async () => {
-    const response = await fetch("src/components/index.html");
-    htmlContent = await response.text();
-  });
 
   function toggleVisualization_pclass() {
     // If the current visualization is 'gender', switch to 'gender_alive'
@@ -105,6 +101,11 @@
 }
 
   let currentBackground = '/titanic.jpeg'; // Default background image
+
+  function goToSection(targetIndex) {
+    index = targetIndex; // Update the index to switch the section
+  }
+  console.log(index);
 
   // Update the background image based on the current page index
   $: if (index === 5) { // Assuming pages are 0-indexed, so page 5 has an index of 4
@@ -343,7 +344,7 @@
       </section> -->
     <!-- <section>This is the second section.</section> -->
     <section style="font-size: 30px; font-family: 'Georgia', serif;">The Maiden Journey of Dreams and Tragedy</section>
-    <section style="font-size: 30px; font-family: 'Georgia', serif;">Proceeding to the Passenger class aspect Analysis</section>
+    <section style="font-size: 30px; font-family: 'Georgia', serif;">Many would believe that the survival on the Titanic would be highly correlated with the social class and wealth of the passenger. Is that true back in the tragedic sunk in 1912? Let's find out by looking at the survival rate relating to the passenger's class</section>
     <section>
       <div class = "button-container_1">
         <button class = "aesthetic-button" on:click={toggleVisualization_pclass}>Switch Visualization</button>
@@ -385,7 +386,7 @@
         </div> -->
       </div>
     </section>
-    <section style="font-size: 30px; font-family: 'Georgia', serif;">Proceeding to the Fare Amount aspect Analysis</section>
+    <section style="font-size: 30px; font-family: 'Georgia', serif;">Clearly, with higher passenger's class, the chance of survival steady increase, which could be related to the the fact that the first class passengers are usually accomondate in the upper room. Fare, on the other hand, as feature that is highly related to passenger's class, should also have similar impact on the sruvival rate. Let's see!</section>
     <section>
       <div class = "button-container_3">
         <button class = "aesthetic-button" on:click={toggleVisualization_fare}>Switch Visualization</button>
@@ -421,10 +422,11 @@
 
       </div>
     </section>
-    <section style="font-size: 30px; font-family: 'Georgia', serif;">Proceeding to the Gender aspect Analysis</section>
+    <section style="font-size: 30px; font-family: 'Georgia', serif;">Despite features relating to the wealth and status, are there any feature that could impact the chance of survival? We first make a intuitive assumption that male and young adults, with greater strength, should have greater chance of survival. Let's test our assumptions!</section>
     <section>
       <div class = "button-container">
         <button class="aesthetic-button" on:click={toggleVisualization_gender}>Switch Visualization</button>
+        <button class="aesthetic-button" on:click={() => goToSection(0)}>Go to Section 3</button>
         <p></p>
       </div>
       <p></p>
@@ -457,7 +459,7 @@
         </div> -->
       </div>
     </section>
-    <section style="font-size: 30px; font-family: 'Georgia', serif;">Proceeding to the Age aspect Analysis</section>
+    <section style="font-size: 30px; font-family: 'Georgia', serif;">Surprisingly, female actually have much higher survival rate! We will then divide passengers into different age groups and find out the association between age and survival rate.</section>
     <section>
       <div class = "button-container_2">
         <button class = "aesthetic-button" on:click={toggleVisualization_age}>Switch Visualization</button>
