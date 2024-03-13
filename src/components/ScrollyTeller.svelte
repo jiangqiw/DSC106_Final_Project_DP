@@ -103,9 +103,18 @@
   let currentBackground = '/titanic.jpeg'; // Default background image
 
   function goToSection(targetIndex) {
-    index = targetIndex; // Update the index to switch the section
+    index = targetIndex; // Update the current index
+    // Dynamically generate the section ID based on the targetIndex
+    const sectionId = `section-${targetIndex}`;
+    // Attempt to find the section element by its ID
+    const sectionElement = document.getElementById(sectionId);
+    if (sectionElement) {
+      // Scroll to the sectionElement smoothly
+      sectionElement.scrollIntoView({
+        behavior: 'smooth'
+      });
+    }
   }
-  console.log(index);
 
   // Update the background image based on the current page index
   $: if (index === 5) { // Assuming pages are 0-indexed, so page 5 has an index of 4
@@ -296,6 +305,33 @@
 .aesthetic-button:focus {
     outline: none; /* Removes outline on focus for aesthetics, ensure accessibility in other ways */
 }
+.aesthetic-button-goto {
+    background-color: #a1620a; /* Green background */
+    color: white; /* White text */
+    padding: 15px 32px; /* Some padding */
+    font-size: 16px; /* Text size */
+    border: none; /* No borders */
+    border-radius: 5px; /* Rounded corners */
+    cursor: pointer; /* Pointer cursor on hover */
+    transition: background-color 0.3s ease; /* Smooth transition for hover effect */
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2); /* Subtle shadow */
+}
+
+.aesthetic-button-goto:hover {
+    background-color: #45a049; /* Darker shade of green on hover */
+}
+
+.aesthetic-button-goto:focus {
+    outline: none; /* Removes outline on focus for aesthetics, ensure accessibility in other ways */
+}
+.button-container {
+  display: flex; /* This will make the container a flex container */
+    flex-wrap: nowrap; /* This prevents the buttons from wrapping to the next line */
+    justify-content: space-between; /* This spaces out the buttons evenly */
+    align-items: center; /* This aligns the buttons vertically */
+    gap: 10px; /* Optional: adds some space between the buttons */
+}
+
 
 
 /* Assuming GenderPointsPage and Pclass_1Page have a top-level element you can target */
@@ -345,9 +381,12 @@
     <!-- <section>This is the second section.</section> -->
     <section style="font-size: 30px; font-family: 'Georgia', serif;">The Maiden Journey of Dreams and Tragedy</section>
     <section style="font-size: 30px; font-family: 'Georgia', serif;">Many would believe that the survival on the Titanic would be highly correlated with the social class and wealth of the passenger. Is that true back in the tragedic sunk in 1912? Let's find out by looking at the survival rate relating to the passenger's class</section>
-    <section>
-      <div class = "button-container_1">
+    <section id="section-1">
+      <div class = "button-container">
         <button class = "aesthetic-button" on:click={toggleVisualization_pclass}>Switch Visualization</button>
+        <button class="aesthetic-button-goto" on:click={() => goToSection(2)}>Go to Fare</button>
+        <button class="aesthetic-button-goto" on:click={() => goToSection(3)}>Go to Gender</button>
+        <button class="aesthetic-button-goto" on:click={() => goToSection(4)}>Go to Age</button>
         <!-- <button on:click={toggleVisualization}>Go to age report</button> -->
       </div>
       <p></p>
@@ -387,9 +426,13 @@
       </div>
     </section>
     <section style="font-size: 30px; font-family: 'Georgia', serif;">Clearly, with higher passenger's class, the chance of survival steady increase, which could be related to the the fact that the first class passengers are usually accomondate in the upper room. Fare, on the other hand, as feature that is highly related to passenger's class, should also have similar impact on the sruvival rate. Let's see!</section>
-    <section>
-      <div class = "button-container_3">
+    <section id="section-2">
+      <div class = "button-container">
         <button class = "aesthetic-button" on:click={toggleVisualization_fare}>Switch Visualization</button>
+        <button class="aesthetic-button-goto" on:click={() => goToSection(1)}>Go to Passenger Class</button>
+        <button class="aesthetic-button-goto" on:click={() => goToSection(3)}>Go to Gender</button>
+        <button class="aesthetic-button-goto" on:click={() => goToSection(4)}>Go to Age</button>
+      </div>
         <div class="legend">
           <div class="legend-item">
             <span class="dot dot-blue"></span> Blue - [less than 30]
@@ -423,10 +466,13 @@
       </div>
     </section>
     <section style="font-size: 30px; font-family: 'Georgia', serif;">Despite features relating to the wealth and status, are there any feature that could impact the chance of survival? We first make a intuitive assumption that male and young adults, with greater strength, should have greater chance of survival. Let's test our assumptions!</section>
-    <section>
+    <section id="section-3">
       <div class = "button-container">
         <button class="aesthetic-button" on:click={toggleVisualization_gender}>Switch Visualization</button>
-        <button class="aesthetic-button" on:click={() => goToSection(0)}>Go to Section 3</button>
+        <button class="aesthetic-button-goto" on:click={() => goToSection(1)}>Go to Passenger Class</button>
+        <button class="aesthetic-button-goto" on:click={() => goToSection(2)}>Go to Fare</button>
+        <button class="aesthetic-button-goto" on:click={() => goToSection(4)}>Go to Age</button>
+
         <p></p>
       </div>
       <p></p>
@@ -460,9 +506,12 @@
       </div>
     </section>
     <section style="font-size: 30px; font-family: 'Georgia', serif;">Surprisingly, female actually have much higher survival rate! We will then divide passengers into different age groups and find out the association between age and survival rate.</section>
-    <section>
-      <div class = "button-container_2">
+    <section id="section-4">
+      <div class = "button-container">
         <button class = "aesthetic-button" on:click={toggleVisualization_age}>Switch Visualization</button>
+        <button class="aesthetic-button-goto" on:click={() => goToSection(1)}>Go to Passenger Class</button>
+        <button class="aesthetic-button-goto" on:click={() => goToSection(2)}>Go to Fare</button>
+        <button class="aesthetic-button-goto" on:click={() => goToSection(3)}>Go to Gender</button>
         <!-- <button on:click={toggleVisualization}>Go to age report</button> -->
       </div>
       <div class="legend">
