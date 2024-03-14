@@ -124,18 +124,14 @@
         </svg>
         
         <!-- Pie Chart: Remove absolute positioning and adjust the width -->
-        <svg class="graph_1" width="200" height="200" viewBox="-120 -120 220 200" class:visible={isVisible}>
-            {#each pieData as slice, index}
-            <!-- svelte-ignore a11y-no-static-element-interactions -->
-            <!-- svelte-ignore a11y-mouse-events-have-key-events -->
+        <svg class="graph_1" width="200" height="200" viewBox="-100 -100 200 200" class:visible={isVisible}>
+            {#each pieData as slice}
             <path d="M 0 0 L {pieRadius * Math.cos(slice.startAngle)} {pieRadius * Math.sin(slice.startAngle)}
-                        A {pieRadius + (index === hoveredIndex ? 10 : 0)} {pieRadius + (index === hoveredIndex ? 10 : 0)} 0 
-                        {(slice.endAngle - slice.startAngle > Math.PI) ? 1 : 0} 1
+                        A {pieRadius} {pieRadius} 0 {(slice.endAngle - slice.startAngle > Math.PI) ? 1 : 0} 1
                         {pieRadius * Math.cos(slice.endAngle)} {pieRadius * Math.sin(slice.endAngle)} Z"
                     fill="{slice.color}"
-                    fill-opacity="{slice.opacity ? slice.opacity : 1}"
-                    on:mouseover={() => handleMouseOver(index, 'chart1')}
-                    on:mouseout={() => handleMouseOut('chart1')} />
+                    fill-opacity="{slice.opacity}"
+                    />
             <text x={slice.labelX} y={slice.labelY} text-anchor="middle" fill="white" dy=".3em">
                         {slice.label}
             </text>
