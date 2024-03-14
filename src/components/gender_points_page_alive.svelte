@@ -32,25 +32,6 @@
         }
     });
 
-    let hoveredIndex = null; // Track hover state for the first pie chart
-    let hoveredIndex_1 = null; // Track hover state for the second pie chart
-
-    function handleMouseOver(sliceIndex, chart) {
-        if (chart === 'chart1') {
-            hoveredIndex = sliceIndex;
-        } else if (chart === 'chart2') {
-            hoveredIndex_1 = sliceIndex;
-        }
-    }
-
-    function handleMouseOut(chart) {
-        if (chart === 'chart1') {
-            hoveredIndex = null;
-        } else if (chart === 'chart2') {
-            hoveredIndex_1 = null;
-        }
-    }
-
     let isVisible = false;
     $: isVisible = index === 6 && currentVisualization === 'casualty';
 

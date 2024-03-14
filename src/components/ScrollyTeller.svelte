@@ -12,9 +12,7 @@
   import AgePointsAlive from "./age_points_survival.svelte";
   import FareAmountPointsPage from "./fare_amount_points_page.svelte";
   import FareAmountPointsAlivePage from "./fare_amount_points_alive_page.svelte";
-  import { onMount } from 'svelte';
 
-  let htmlContent = '';
   let count, index, offset, progress;
   let width, height;
   let currentVisualization = 'gender';
@@ -129,6 +127,73 @@
   else {
     currentBackground = '/titanic.jpeg';
   }
+
+  let pieData_1 = [
+        { value: 72.7, color: 'blue' },
+        { value: 27.3, color: "orange"}
+    ];
+    let total_1 = pieData_1.reduce((acc, slice) => acc + slice.value, 0);
+    let startAngle_1 = 0;
+    let pieRadius = 100; // Example radius
+    let labelOffset = -35; // Example offset
+    let isVisible = true; // This should be controlled based on your conditions
+
+    pieData_1.forEach(slice => {
+        let slicePercentage_1 = slice.value / total_1;
+        let endAngle_1 = startAngle_1 + slicePercentage_1 * 2 * Math.PI;
+
+        slice.startAngle = startAngle_1;
+        slice.endAngle = endAngle_1;
+        slice.midAngle = (slice.startAngle + slice.endAngle) / 2;
+        startAngle_1 = endAngle_1;
+
+        let adjustedRadius_1 = pieRadius + labelOffset;
+        slice.labelX = adjustedRadius_1 * Math.cos(slice.midAngle);
+        slice.labelY = adjustedRadius_1 * Math.sin(slice.midAngle);
+        slice.label = `${Math.round((slice.value / total_1) * 100)}%`;
+    });
+
+    let pieData_2 = [
+        { value: 61.9, color: 'blue' },
+        {value: 38.1, color: "orange"}
+    ];
+
+    let total = pieData_2.reduce((acc, slice) => acc + slice.value, 0);
+    let startAngle = 0;
+
+    pieData_2.forEach(slice => {
+        let slicePercentage = slice.value / total;
+        let endAngle = startAngle + slicePercentage * 2 * Math.PI;
+        let adjustedRadius = pieRadius + labelOffset;
+        slice.startAngle = startAngle;
+        slice.endAngle = endAngle;
+        slice.midAngle = (slice.startAngle + slice.endAngle) / 2;
+        startAngle = endAngle;
+        slice.labelX = adjustedRadius * Math.cos(slice.midAngle);
+        slice.labelY = adjustedRadius * Math.sin(slice.midAngle);
+        slice.label = `${Math.round((slice.value / total) * 100)}%`;
+    });
+
+    let pieData = [
+        { value: 56.0, color: 'blue' },
+        {value: 44.0, color: "orange"}
+    ];
+
+    pieData.forEach(slice => {
+        let slicePercentage = slice.value / total;
+        let endAngle = startAngle + slicePercentage * 2 * Math.PI;
+
+
+        let adjustedRadius = pieRadius + labelOffset;
+
+        slice.startAngle = startAngle;
+        slice.endAngle = endAngle;
+        slice.midAngle = (slice.startAngle + slice.endAngle) / 2;
+        startAngle = endAngle;
+        slice.labelX = adjustedRadius * Math.cos(slice.midAngle);
+        slice.labelY = adjustedRadius * Math.sin(slice.midAngle);
+        slice.label = `${Math.round((slice.value / total) * 100)}%`;
+    });
 </script>
 
 <style>
@@ -263,6 +328,10 @@
     background-color: blue;
 }
 
+.dot-orange {
+    background-color: orange;
+}
+
 .dot-red {
     background-color: red;
 }
@@ -331,6 +400,94 @@
     align-items: center; /* This aligns the buttons vertically */
     gap: 10px; /* Optional: adds some space between the buttons */
 }
+.button-container-2 {
+  display: flex; /* This will make the container a flex container */
+    flex-wrap: nowrap; /* This prevents the buttons from wrapping to the next line */
+    justify-content: space-between; /* This spaces out the buttons evenly */
+    align-items: center; /* This aligns the buttons vertically */
+    gap: 0px; /* Optional: adds some space between the buttons */
+    margin-left: 200px;
+    margin-top: -200px;
+}
+
+.graph_1{
+      width: 50%;
+        height: 100vh;
+        margin: -10;
+        margin-top: 0px;
+        margin-right:-200px;
+        margin-left: -500px;
+        margin-bottom: 300px;
+        position: relative;
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity 0.5s, visibility 0.5s;
+        justify-content: center;
+        align-items: center;
+}
+
+.graph_1.visible {
+        margin: none;
+        opacity: 1;
+        visibility: visible;
+        padding:0%;
+    }
+
+.graph_2{
+        width: 50%;
+        height: 100vh;
+        margin: -10;
+        margin-top: 0px;
+        margin-right:-200px;
+        margin-left: -500px;
+        margin-bottom: 300px;
+        position: relative;
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity 0.5s, visibility 0.5s;
+        justify-content: center;
+        align-items: center;
+}
+
+.graph_2.visible {
+        margin: none;
+        opacity: 1;
+        visibility: visible;
+        padding:0%;
+}
+
+.graph_3{
+        width: 50%;
+        height: 100vh;
+        margin: -10;
+        margin-top: 0px;
+        margin-right:-200px;
+        margin-left: -500px;
+        margin-bottom: 300px;
+        position: relative;
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity 0.5s, visibility 0.5s;
+        justify-content: center;
+        align-items: center;
+}
+
+.graph_3.visible {
+        margin: none;
+        opacity: 1;
+        visibility: visible;
+        padding:0%;
+}
+.chart-title {
+  font-family: 'Arial', sans-serif; /* Choose a font */
+  font-size: 12px; /* Choose your size */
+  fill: #333; /* Choose your text color */
+  font-weight: bold; /* Optional: if you want bold text */
+  /* Additional styling */
+  margin-top: 100;
+  width: 100;
+}
+  
 
 
 
@@ -548,6 +705,66 @@
         </div> -->
       </div>
     </section>
+    
+    <section>
+      <p style="font-size: 20px; font-family: 'Arial', sans-serif;">Here is the new paragraph you wanted to add. You can customize the content and style as needed.</p>
+      <div class = "legend">
+        <div class="legend-item">
+          <span class="dot dot-blue"></span> Blue - [Survived]
+        </div>
+        <div class="legend-item">
+          <span class="dot dot-orange"></span> Orange - [Dead]
+        </div>
+      </div>
+      <div class="button-container-2">
+      <svg class="graph_2" width="200" height="200" viewBox="-100 -100 200 200" class:visible={isVisible}>
+        <text x="0" y="-120" text-anchor="middle" class="chart-title">Women Survival Rates</text>
+        {#each pieData_1 as slice}
+        <path d="M 0 0 L {pieRadius * Math.cos(slice.startAngle)} {pieRadius * Math.sin(slice.startAngle)}
+                    A {pieRadius} {pieRadius} 0 {(slice.endAngle - slice.startAngle > Math.PI) ? 1 : 0} 1
+                    {pieRadius * Math.cos(slice.endAngle)} {pieRadius * Math.sin(slice.endAngle)} Z"
+                fill="{slice.color}"
+                fill-opacity="{slice.opacity}"
+                />
+        <text x={slice.labelX} y={slice.labelY} text-anchor="middle" fill="white" dy=".3em">
+                    {slice.label}
+        </text>
+        {/each}
+    </svg>
+
+    <svg class="graph_1" width="200" height="200" viewBox="-100 -100 200 200" class:visible={isVisible}>
+      <text x="0" y="-120" text-anchor="middle" class="chart-title">1st class Survival Rate</text>
+      {#each pieData_2 as slice}
+      <path d="M 0 0 L {pieRadius * Math.cos(slice.startAngle)} {pieRadius * Math.sin(slice.startAngle)}
+                  A {pieRadius} {pieRadius} 0 {(slice.endAngle - slice.startAngle > Math.PI) ? 1 : 0} 1
+                  {pieRadius * Math.cos(slice.endAngle)} {pieRadius * Math.sin(slice.endAngle)} Z"
+              fill="{slice.color}"
+              fill-opacity="{slice.opacity}"
+              />
+      <text x={slice.labelX} y={slice.labelY} text-anchor="middle" fill="white" dy=".3em">
+                  {slice.label}
+      </text>
+      {/each}
+  </svg>
+
+  <svg class="graph_3" width="200" height="200" viewBox="-100 -100 200 200" class:visible={isVisible}>
+    <text x="0" y="-120" text-anchor="middle" class="chart-title"> Under Age 15 Survival Rate</text>
+    {#each pieData as slice}
+    <path d="M 0 0 L {pieRadius * Math.cos(slice.startAngle)} {pieRadius * Math.sin(slice.startAngle)}
+                A {pieRadius} {pieRadius} 0 {(slice.endAngle - slice.startAngle > Math.PI) ? 1 : 0} 1
+                {pieRadius * Math.cos(slice.endAngle)} {pieRadius * Math.sin(slice.endAngle)} Z"
+            fill="{slice.color}"
+            fill-opacity="{slice.opacity}"
+            />
+    <text x={slice.labelX} y={slice.labelY} text-anchor="middle" fill="white" dy=".3em">
+                {slice.label}
+    </text>
+    {/each}
+  </svg>
+  </div>
+  <text>Hi</text>
+  </section>
+  
     
   </div>
 
