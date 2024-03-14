@@ -298,11 +298,19 @@
     font-size:20px;
     padding:10px;
   }
+  @keyframes blinkAnimation {
+    0% { color: black; }
+    50% { color: red; }
+    100% { color: black; }
+  }
+
   .reminder {
-    bottom:0;
-    font-size:25px;
-    margin-top:100px;
-    color:red;
+    bottom: 0;
+    font-size: 25px;
+    margin-top: 150px;
+    color: black;
+    transition: color 0.5s ease; /* Smooth transition for color change */
+    animation: blinkAnimation 2s infinite; /* Apply the animation */
   }
 
   .visualization-container {
@@ -551,10 +559,21 @@
       </section> -->
     <!-- <section>This is the second section.</section> -->
     <section>
-      <p style="font-size: 20px; font-family: 'Arial', sans-serif;">Takeaway:</p>
+      <p></p>
+      <p style="padding-top: 100px; font-size: 30px; font-family: 'Georgia', serif; text-align: center;">
+        In the film's haunting finale, Jack's sacrifice for Rose captures the essence of true bravery aboard the Titanic, stirring deep emotions. This blend of cinema and history invites us to uncover real-life heroes in the tragedy's shadow, bridging fiction with heartfelt reality and igniting an enduring connection to this timeless sorrow.
+      </p>
+      <div class="reminder">
+        Please Full Screen to Gain Maximized Experience
+      </div>
     </section>
     <section style="font-size: 30px; font-family: 'Georgia', serif;">The Maiden Journey of Dreams and Tragedy</section>
-    <section id="section-1-bg" style="font-size: 30px; font-family: 'Georgia', serif;">Many would believe that the survival on the Titanic would be highly correlated with the social class and wealth of the passenger. Is that true back in the tragedic sunk in 1912? Let's find out by looking at the survival rate relating to the passenger's class</section>
+    <section id="section-1-bg" style="font-size: 30px; font-family: 'Georgia', serif;">
+      Many would believe that the survival on the Titanic would be highly correlated with the social class and wealth of the passenger. Is that true back in the tragedic sunk in 1912? Let's find out by looking at the survival rate relating to the passenger's class
+      <div class="reminder">
+        ↓ Scroll Down to View Result ↓
+      </div>
+    </section>
     <section id="section-1">
       <div class = "button-container">
         <button class = "aesthetic-button" on:click={toggleVisualization_pclass}>Switch Visualization</button>
@@ -599,7 +618,12 @@
         </div> -->
       </div>
     </section>
-    <section id="section-2-bg" style="font-size: 30px; font-family: 'Georgia', serif;">Clearly, with higher passenger's class, the chance of survival steady increase, which could be related to the the fact that the first class passengers are usually accomondate in the upper room. Fare, on the other hand, as feature that is highly related to passenger's class, should also have similar impact on the sruvival rate. Let's see!</section>
+    <section id="section-2-bg" style="font-size: 30px; font-family: 'Georgia', serif;">
+      Clearly, with higher passenger's class, the chance of survival steady increase, which could be related to the the fact that the first class passengers are usually accomondate in the upper room. Fare, on the other hand, as feature that is highly related to passenger's class, should also have similar impact on the sruvival rate. Let's see!
+      <div class="reminder">
+        ↓ Scroll Down to View Result ↓
+      </div>
+    </section>
     <section id="section-2">
       <div class = "button-container">
         <button class = "aesthetic-button" on:click={toggleVisualization_fare}>Switch Visualization</button>
@@ -639,7 +663,12 @@
 
       </div>
     </section>
-    <section id="section-3-bg" style="font-size: 30px; font-family: 'Georgia', serif;">Despite features relating to the wealth and status, are there any feature that could impact the chance of survival? We first make a intuitive assumption that male and young adults, with greater strength, should have greater chance of survival. Let's test our assumptions!</section>
+    <section id="section-3-bg" style="font-size: 30px; font-family: 'Georgia', serif;">
+      Despite features relating to the wealth and status, are there any feature that could impact the chance of survival? We first make a intuitive assumption that male and young adults, with greater strength, should have greater chance of survival. Let's test our assumptions!
+      <div class="reminder">
+        ↓ Scroll Down to View Result ↓
+      </div>
+    </section>
     <section id="section-3">
       <div class = "button-container">
         <button class="aesthetic-button" on:click={toggleVisualization_gender}>Switch Visualization</button>
@@ -679,7 +708,12 @@
         </div> -->
       </div>
     </section>
-    <section id="section-4-bg" style="font-size: 30px; font-family: 'Georgia', serif; color: black; opacity: 1">Surprisingly, female actually have much higher survival rate! We will then divide passengers into different age groups and find out the association between age and survival rate.</section>
+    <section id="section-4-bg" style="font-size: 30px; font-family: 'Georgia', serif;">
+      Surprisingly, female actually have much higher survival rate! We will then divide passengers into different age groups and find out the association between age and survival rate.
+      <div class="reminder">
+        ↓ Scroll Down to View Result ↓
+      </div>
+    </section>
     <section id="section-4">
       <div class = "button-container">
         <button class = "aesthetic-button" on:click={toggleVisualization_age}>Switch Visualization</button>
@@ -724,7 +758,8 @@
     </section>
     
     <section>
-      <p style="font-size: 20px; font-family: 'Arial', sans-serif;">Takeaway:</p>
+      <p style="font-size: 25px; font-family: 'Georgia', serif;">Remarkably, the story that unfolds is one of women and children from all walks of life, defying the cruel hand of fate. Thus, amidst the Titanic's tragedy, a tale of courage and sacrifice takes shape, reminding us that in the darkest of times, humanity's light shines brightest, bridging divides of wealth and class with acts of sheer bravery and compassion.
+      </p>
       <div class = "legend">
         <div class="legend-item">
           <span class="dot dot-blue"></span> Blue - [Survived]
