@@ -480,7 +480,7 @@
 }
 .chart-title {
   font-family: 'Arial', sans-serif; /* Choose a font */
-  font-size: 12px; /* Choose your size */
+  font-size: 15px; /* Choose your size */
   fill: #333; /* Choose your text color */
   font-weight: bold; /* Optional: if you want bold text */
   /* Additional styling */
