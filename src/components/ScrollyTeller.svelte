@@ -677,7 +677,7 @@
         </div> -->
       </div>
     </section>
-    <section id="section-4-bg" style="font-size: 30px; font-family: 'Georgia', serif;">Surprisingly, female actually have much higher survival rate! We will then divide passengers into different age groups and find out the association between age and survival rate.</section>
+    <section id="section-4-bg" style="font-size: 30px; font-family: 'Georgia', serif; color: black; opacity: 1">Surprisingly, female actually have much higher survival rate! We will then divide passengers into different age groups and find out the association between age and survival rate.</section>
     <section id="section-4">
       <div class = "button-container">
         <button class = "aesthetic-button" on:click={toggleVisualization_age}>Switch Visualization</button>
