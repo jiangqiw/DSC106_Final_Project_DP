@@ -132,7 +132,7 @@
   } else if (index === 2){
     currentBackground = 'Pclass.jpg';
   } else if (index === 8){
-    currentBackground = 'Age.jpg';
+    currentBackground = 'https://github.com/jiangqiw/DSC106_Final_Project_DP/blob/main/static/Age.jpg';
   } else if (index === 4){
     currentBackground = 'Fare.jpg';
   }
