@@ -707,7 +707,7 @@
     </section>
     
     <section>
-      <p style="font-size: 20px; font-family: 'Arial', sans-serif;">Here is the new paragraph you wanted to add. You can customize the content and style as needed.</p>
+      <p style="font-size: 20px; font-family: 'Arial', sans-serif;">Takeaway:</p>
       <div class = "legend">
         <div class="legend-item">
           <span class="dot dot-blue"></span> Blue - [Survived]
@@ -762,7 +762,6 @@
     {/each}
   </svg>
   </div>
-  <text>Hi</text>
   </section>
   
     
