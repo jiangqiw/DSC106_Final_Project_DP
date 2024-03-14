@@ -119,7 +119,7 @@
   }
 
   pathIndex++;
-  setTimeout(animateDot, 1000); // Adjust timing as needed
+  setTimeout(animateDot, 1500); // Adjust timing as needed
 }
 
   function startAnimation() {
@@ -189,8 +189,8 @@
 
         map.addLayer({
           id: 'city-points',
-          type: 'symbol',
           source: 'cities',
+          type: 'symbol',
           layout: {
             'icon-image': 'marker-15', // Use an appropriate marker icon
             'icon-size': 1.5, // Adjust icon size
