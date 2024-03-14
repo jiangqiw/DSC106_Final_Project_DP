@@ -98,7 +98,7 @@
     }
 }
 
-  let currentBackground = 'titanic.jpeg'; // Default background image
+  let currentBackground = 'https://github.com/jiangqiw/DSC106_Final_Project_DP/blob/main/static/titanic.jpeg'; // Default background image
 
   function goToSection(targetIndex) {
     if (targetIndex === 1) {
@@ -128,13 +128,15 @@
 
   // Update the background image based on the current page index
   $: if (index === 6) { // Assuming pages are 0-indexed, so page 5 has an index of 4
-    currentBackground = 'gender.jpg';
+    currentBackground = 'https://github.com/jiangqiw/DSC106_Final_Project_DP/blob/main/static/gender.jpg';
   } else if (index === 2){
-    currentBackground = 'Pclass.jpg';
+    currentBackground = 'https://github.com/jiangqiw/DSC106_Final_Project_DP/blob/main/static/Pclass.jpg';
   } else if (index === 8){
     currentBackground = 'https://github.com/jiangqiw/DSC106_Final_Project_DP/blob/main/static/Age.jpg';
   } else if (index === 4){
-    currentBackground = 'Fare.jpg';
+    currentBackground = 'https://github.com/jiangqiw/DSC106_Final_Project_DP/blob/main/static/Fare.jpg';
+  } else if (index === 1){
+    currentBackground = 'https://github.com/jiangqiw/DSC106_Final_Project_DP/blob/main/static/Jack_Rose.jpg';
   }
   else {
     currentBackground = '/titanic.jpeg';
