@@ -139,7 +139,7 @@
     currentBackground = 'https://github.com/jiangqiw/DSC106_Final_Project_DP/blob/main/static/Jack_Rose.jpg';
   }
   else {
-    currentBackground = '/titanic.jpeg';
+    currentBackground = 'https://github.com/jiangqiw/DSC106_Final_Project_DP/blob/main/static/titanic.jpeg';
   }
 
   let pieData_1 = [
