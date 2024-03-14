@@ -44,7 +44,7 @@
 
     let isVisible = false;
     // $: isVisible = index === 5 && (currentVisuallization_pclass === 'class1');
-    $: isVisible = index === 2 && (pclassVisualization === 'casualty');
+    $: isVisible = index === 3 && (pclassVisualization === 'casualty');
 
     let pieData = [
         { value: 61.9, color: 'blue' },
@@ -123,7 +123,7 @@
 </script>
 
 <div class="graph-container" class:visible={isVisible}>
-    {#if index === 2 && pclassVisualization === 'casualty'}
+    {#if index === 3 && pclassVisualization === 'casualty'}
         <!-- <div class="legend">
             <div class="legend-item">
                 <span class="dot dot-blue"></span> Blue Dot - [Description for blue dots]

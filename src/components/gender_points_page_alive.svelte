@@ -33,7 +33,7 @@
     });
 
     let isVisible = false;
-    $: isVisible = index === 6 && currentVisualization === 'casualty';
+    $: isVisible = index === 7 && currentVisualization === 'casualty';
 
     let pieData = [
         { value: 19.1, color: 'blue' },
@@ -89,7 +89,7 @@
 </script>
 
 <div class="graph-container" class:visible={isVisible}>
-    {#if index === 6}
+    {#if index === 7}
         <!-- Point Graph: Adjust the width to allow space for the pie chart -->
         <svg class="graph" width="75%" height="90vh" class:visible={isVisible}>
             {#each points as point, i}

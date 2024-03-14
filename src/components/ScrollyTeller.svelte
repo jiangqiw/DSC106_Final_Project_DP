@@ -101,9 +101,21 @@
   let currentBackground = '/titanic.jpeg'; // Default background image
 
   function goToSection(targetIndex) {
+    if (targetIndex === 1) {
+      index = 2;
+    } 
+    if (targetIndex === 2) {
+      index = 4;
+    } 
+    if (targetIndex === 3) {
+      index = 6;
+    }
+    if (targetIndex === 4) {
+      index = 8;
+    }
     index = targetIndex; // Update the current index
     // Dynamically generate the section ID based on the targetIndex
-    const sectionId = `section-${targetIndex}`;
+    const sectionId = `section-${targetIndex}-bg`;
     // Attempt to find the section element by its ID
     const sectionElement = document.getElementById(sectionId);
     if (sectionElement) {
@@ -115,13 +127,13 @@
   }
 
   // Update the background image based on the current page index
-  $: if (index === 5) { // Assuming pages are 0-indexed, so page 5 has an index of 4
+  $: if (index === 6) { // Assuming pages are 0-indexed, so page 5 has an index of 4
     currentBackground = '/gender.jpg';
-  } else if (index === 1){
+  } else if (index === 2){
     currentBackground = '/Pclass.jpg';
-  } else if (index === 7){
+  } else if (index === 8){
     currentBackground = '/Age.jpg';
-  } else if (index === 3){
+  } else if (index === 4){
     currentBackground = '/Fare.jpg';
   }
   else {
@@ -536,8 +548,11 @@
       </div>
       </section> -->
     <!-- <section>This is the second section.</section> -->
+    <section>
+      <p style="font-size: 20px; font-family: 'Arial', sans-serif;">Takeaway:</p>
+    </section>
     <section style="font-size: 30px; font-family: 'Georgia', serif;">The Maiden Journey of Dreams and Tragedy</section>
-    <section style="font-size: 30px; font-family: 'Georgia', serif;">Many would believe that the survival on the Titanic would be highly correlated with the social class and wealth of the passenger. Is that true back in the tragedic sunk in 1912? Let's find out by looking at the survival rate relating to the passenger's class</section>
+    <section id="section-1-bg" style="font-size: 30px; font-family: 'Georgia', serif;">Many would believe that the survival on the Titanic would be highly correlated with the social class and wealth of the passenger. Is that true back in the tragedic sunk in 1912? Let's find out by looking at the survival rate relating to the passenger's class</section>
     <section id="section-1">
       <div class = "button-container">
         <button class = "aesthetic-button" on:click={toggleVisualization_pclass}>Switch Visualization</button>
@@ -582,7 +597,7 @@
         </div> -->
       </div>
     </section>
-    <section style="font-size: 30px; font-family: 'Georgia', serif;">Clearly, with higher passenger's class, the chance of survival steady increase, which could be related to the the fact that the first class passengers are usually accomondate in the upper room. Fare, on the other hand, as feature that is highly related to passenger's class, should also have similar impact on the sruvival rate. Let's see!</section>
+    <section id="section-2-bg" style="font-size: 30px; font-family: 'Georgia', serif;">Clearly, with higher passenger's class, the chance of survival steady increase, which could be related to the the fact that the first class passengers are usually accomondate in the upper room. Fare, on the other hand, as feature that is highly related to passenger's class, should also have similar impact on the sruvival rate. Let's see!</section>
     <section id="section-2">
       <div class = "button-container">
         <button class = "aesthetic-button" on:click={toggleVisualization_fare}>Switch Visualization</button>
@@ -622,7 +637,7 @@
 
       </div>
     </section>
-    <section style="font-size: 30px; font-family: 'Georgia', serif;">Despite features relating to the wealth and status, are there any feature that could impact the chance of survival? We first make a intuitive assumption that male and young adults, with greater strength, should have greater chance of survival. Let's test our assumptions!</section>
+    <section id="section-3-bg" style="font-size: 30px; font-family: 'Georgia', serif;">Despite features relating to the wealth and status, are there any feature that could impact the chance of survival? We first make a intuitive assumption that male and young adults, with greater strength, should have greater chance of survival. Let's test our assumptions!</section>
     <section id="section-3">
       <div class = "button-container">
         <button class="aesthetic-button" on:click={toggleVisualization_gender}>Switch Visualization</button>
@@ -662,7 +677,7 @@
         </div> -->
       </div>
     </section>
-    <section style="font-size: 30px; font-family: 'Georgia', serif;">Surprisingly, female actually have much higher survival rate! We will then divide passengers into different age groups and find out the association between age and survival rate.</section>
+    <section id="section-4-bg" style="font-size: 30px; font-family: 'Georgia', serif;">Surprisingly, female actually have much higher survival rate! We will then divide passengers into different age groups and find out the association between age and survival rate.</section>
     <section id="section-4">
       <div class = "button-container">
         <button class = "aesthetic-button" on:click={toggleVisualization_age}>Switch Visualization</button>

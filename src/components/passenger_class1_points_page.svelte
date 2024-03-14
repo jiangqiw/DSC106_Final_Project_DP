@@ -41,7 +41,7 @@
 
     let isVisible = false;
     // $: isVisible = index === 5 && (currentVisuallization_pclass === 'class1');
-    $: isVisible = index === 2 && (pclassVisualization === 'class1');
+    $: isVisible = index === 3 && (pclassVisualization === 'class1');
 
     let pieData = [
         { value: 24.7, color: 'blue' },
@@ -73,7 +73,7 @@
 
 
 <div class="visualization-container" class:visible={isVisible}>
-    {#if index === 2}
+    {#if index === 3}
         <svg class = "graph" width = 75% height = "90vh" class:visible={isVisible}>
             {#each points as point, i}
             <circle cx={point.x} cy={point.y} r="4" 

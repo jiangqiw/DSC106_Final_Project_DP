@@ -49,7 +49,7 @@
     });
 
     let isVisible = false;
-    $: isVisible = index === 6 && currentVisualization === 'gender';
+    $: isVisible = index === 7 && currentVisualization === 'gender';
     $: if (index === 2 && currentVisualization === 'gender' && chartInstance) {
         initializeChart();
     }
@@ -83,7 +83,7 @@
 </script>
 
 <div class="visualization-container" class:visible={isVisible}>
-    {#if index === 6}
+    {#if index === 7}
         <!-- Point Graph: Adjust the width to allow space for the pie chart -->
         <svg class="graph" width="75%" height="90vh" class:visible={isVisible}>
             {#each points as point, i}
