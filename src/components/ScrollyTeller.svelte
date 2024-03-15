@@ -577,6 +577,7 @@
         ↓ Scroll Down to View Result ↓
       </div>
     </section>
+    The Switch Visualization Button shows the survival rates in each group. And you can jump to other reports using other Go to buttons.
     <section id="section-1">
       <div class = "button-container">
         <button class = "aesthetic-button" on:click={toggleVisualization_pclass}>Switch Visualization</button>
@@ -627,7 +628,12 @@
         ↓ Scroll Down to View Result ↓
       </div>
     </section>
+    
     <section id="section-2">
+      The Switch Visualization Button shows the survival rates in each group. And you can jump to other reports using other Go to buttons.
+      <p>
+
+      </p>
       <div class = "button-container">
         <button class = "aesthetic-button" on:click={toggleVisualization_fare}>Switch Visualization</button>
         <button class="aesthetic-button-goto" on:click={() => goToSection(1)}>Go to Passenger Class</button>
@@ -673,6 +679,10 @@
       </div>
     </section>
     <section id="section-3">
+      The Switch Visualization Button shows the survival rates in each group. And you can jump to other reports using other Go to buttons.
+      <p>
+
+      </p>
       <div class = "button-container">
         <button class="aesthetic-button" on:click={toggleVisualization_gender}>Switch Visualization</button>
         <button class="aesthetic-button-goto" on:click={() => goToSection(1)}>Go to Passenger Class</button>
@@ -718,6 +728,13 @@
       </div>
     </section>
     <section id="section-4">
+      The Switch Visualization Button shows the survival rates in each group. And you can jump to other reports using other Go to buttons.
+      <p>
+
+      </p>
+      <p>
+        
+      </p>
       <div class = "button-container">
         <button class = "aesthetic-button" on:click={toggleVisualization_age}>Switch Visualization</button>
         <button class="aesthetic-button-goto" on:click={() => goToSection(1)}>Go to Passenger Class</button>
