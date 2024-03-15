@@ -567,7 +567,7 @@
         Please Full Screen to Gain Maximized Experience
       </div>
       <div class="reminder">
-        Please Scroll down to Proceed
+        Please Scroll Down to Proceed
       </div>
     </section>
     <section style="font-size: 30px; font-family: 'Georgia', serif;">The Maiden Journey of Dreams and Tragedy</section>
