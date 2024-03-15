@@ -26,7 +26,7 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -2.50, 52.3
+          0.04351, 52.009700
         ]
       },
       "properties": {
@@ -38,7 +38,7 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -1.52, 50.0
+          -0.4, 49.98
         ]
       },
       "properties": {
@@ -50,7 +50,7 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -8.2943, 53.5
+          -8.2943, 52.8503
         ]
       },
       "properties": {
@@ -62,19 +62,20 @@
     "geometry": {
       "type": "Point",
       "coordinates": [
-          -55, 38.7128
+          -76.006, 40.7128
       ]
     },
     "properties": {
       "city": "<-- New York"
     }
   },
+  
     {
       "type": "Feature",
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -39, 45.5
+          -40.5, 46.5
         ]
       },
       "properties": {
@@ -119,7 +120,7 @@
   }
 
   pathIndex++;
-  setTimeout(animateDot, 1500); // Adjust timing as needed
+  setTimeout(animateDot, 2500); // Adjust timing as needed
 }
 
   function startAnimation() {
@@ -182,15 +183,15 @@
             coordinates: path[0] // Start at the first point
           }
         });
-        // map.addSource('cities', {
-        //   type: 'geojson',
-        //   data: cities
-        // });
+        map.addSource('cities', {
+          type: 'geojson',
+          data: cities
+        });
 
         map.addLayer({
           id: 'city-points',
-          source: 'cities',
           type: 'symbol',
+          source: 'cities',
           layout: {
             'icon-image': 'marker-15', // Use an appropriate marker icon
             'icon-size': 1.5, // Adjust icon size

@@ -58,35 +58,35 @@ $: tweenedData_point = points.features.map((point, i) => ({
     //   tweenedY.set(cities.features.map((city, i) => height / 2 + i * 20));
     // }
 
-    if ( index === 1) {
-      tweenedX.set(
-        cities.features.map((city) => projection(city.geometry.coordinates)[0])
-      );
-      tweenedY.set(
-        cities.features.map((city) => projection(city.geometry.coordinates)[1])
-      );
-      tweenedX_point.set(
-        points.features.map((point) => projection(point.geometry.coordinates)[0])
-      );
-      tweenedY_point.set(
-        points.features.map((point) => projection(point.geometry.coordinates)[1])
-      );
-    }
+    // if ( index === 1) {
+    //   tweenedX.set(
+    //     cities.features.map((city) => projection(city.geometry.coordinates)[0])
+    //   );
+    //   tweenedY.set(
+    //     cities.features.map((city) => projection(city.geometry.coordinates)[1])
+    //   );
+    //   tweenedX_point.set(
+    //     points.features.map((point) => projection(point.geometry.coordinates)[0])
+    //   );
+    //   tweenedY_point.set(
+    //     points.features.map((point) => projection(point.geometry.coordinates)[1])
+    //   );
+    // }
 
-    if ( index > 1 || index < 1) {
-      tweenedX.set(
-        cities.features.map((city) => 0),
-      );
-      tweenedY.set(
-        cities.features.map((city) => 0),
-      );
-      tweenedX_point.set(
-        points.features.map((point) => 0)
-      );
-      tweenedY_point.set(
-        points.features.map((point) => 0)
-      );
-    }
+    // if ( index > 1 || index < 1) {
+    //   tweenedX.set(
+    //     cities.features.map((city) => 0),
+    //   );
+    //   tweenedY.set(
+    //     cities.features.map((city) => 0),
+    //   );
+    //   tweenedX_point.set(
+    //     points.features.map((point) => 0)
+    //   );
+    //   tweenedY_point.set(
+    //     points.features.map((point) => 0)
+    //   );
+    // }
 
 
   }
