@@ -564,7 +564,7 @@
         In the film's breathtaking and haunting finale, Jack's noble and selfless sacrifice for Rose truly embodies the essence of sheer, unparalleled bravery aboard the Titanic, stirring deep, raw, and overwhelming emotions within us. "Oh, what a valiant heart! What a brave soul!" we cry, as tears blur our vision. However, did something like this really happen back in 1912? Our visulization will give us the answer.
       </p>
       <div class="reminder">
-        Please Full Screen to Gain Maximized Experience
+        Please Full Screen on Your laptop to Gain Maximized Experience
       </div>
       <div class="reminder">
         Please Scroll Down to Proceed

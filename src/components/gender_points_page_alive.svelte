@@ -280,4 +280,13 @@
         width: 100%;
         height: 100vh;
     }
+    .button-container-2 {
+    display: flex; /* This will make the container a flex container */
+        flex-wrap: nowrap; /* This prevents the buttons from wrapping to the next line */
+        justify-content: space-between; /* This spaces out the buttons evenly */
+        align-items: center; /* This aligns the buttons vertically */
+        gap: 0px; /* Optional: adds some space between the buttons */
+        margin-left: 200px;
+        margin-top: -200px;
+    }
 </style>
