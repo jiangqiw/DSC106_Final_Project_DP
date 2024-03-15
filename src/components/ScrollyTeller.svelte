@@ -307,7 +307,7 @@
   .reminder {
     bottom: 0;
     font-size: 25px;
-    margin-top: 80px;
+    margin-top: 60px;
     color: black;
     transition: color 0.5s ease; /* Smooth transition for color change */
     animation: blinkAnimation 2s infinite; /* Apply the animation */
