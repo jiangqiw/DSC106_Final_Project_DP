@@ -540,10 +540,8 @@
   <div class="background-image" style="background-image: url({currentBackground});"></div>
   <Map bind:geoJsonToFit {index} />
   <Graph {index} {width} {height} {projection} />
-  <div class="progress-bars">
-    <p>total progress:<strong>{index + 1}/{count}</strong></p >
-    <progress value={progress || 0}></progress>
-  </div>
+  <p>total progress:<strong>{index + 1}/{count}</strong></p >
+  <progress value={progress || 0}></progress>
 </div>
 
   <div class="foreground" slot="foreground">
