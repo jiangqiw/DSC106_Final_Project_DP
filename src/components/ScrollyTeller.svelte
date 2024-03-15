@@ -313,6 +313,15 @@
     animation: blinkAnimation 2s infinite; /* Apply the animation */
   }
 
+  .reminder1 {
+    bottom: 0;
+    font-size: 15px;
+    margin-top: 30px;
+    color: black;
+    transition: color 0.5s ease; /* Smooth transition for color change */
+    animation: blinkAnimation 2s infinite; /* Apply the animation */
+  }
+
   .visualization-container {
   position: relative;
   height: 100vh; /* Adjust based on your content */
@@ -577,8 +586,13 @@
         ↓ Scroll Down to View Result ↓
       </div>
     </section>
-    The Switch Visualization Button shows the survival rates in each group. And you can jump to other reports using other Go to buttons.
     <section id="section-1">
+      <div class="reminder1">
+        ↓The Switch Visualization Button shows the survival rates in this group. And you can jump to other reports using other Go to buttons.↓
+      </div>
+      <p>
+
+      </p>
       <div class = "button-container">
         <button class = "aesthetic-button" on:click={toggleVisualization_pclass}>Switch Visualization</button>
         <button class="aesthetic-button-goto" on:click={() => goToSection(2)}>Go to Fare</button>
@@ -630,7 +644,9 @@
     </section>
     
     <section id="section-2">
-      The Switch Visualization Button shows the survival rates in each group. And you can jump to other reports using other Go to buttons.
+      <div class="reminder1">
+        ↓The Switch Visualization Button shows the survival rates in this group. And you can jump to other reports using other Go to buttons.↓
+      </div>
       <p>
 
       </p>
@@ -679,7 +695,9 @@
       </div>
     </section>
     <section id="section-3">
-      The Switch Visualization Button shows the survival rates in each group. And you can jump to other reports using other Go to buttons.
+      <div class="reminder1">
+        ↓The Switch Visualization Button shows the survival rates in this group. And you can jump to other reports using other Go to buttons.↓
+      </div>
       <p>
 
       </p>
@@ -728,12 +746,14 @@
       </div>
     </section>
     <section id="section-4">
-      The Switch Visualization Button shows the survival rates in each group. And you can jump to other reports using other Go to buttons.
+      <div class="reminder1">
+        ↓The Switch Visualization Button shows the survival rates in this group. And you can jump to other reports using other Go to buttons.↓
+      </div>
       <p>
 
       </p>
       <p>
-        
+
       </p>
       <div class = "button-container">
         <button class = "aesthetic-button" on:click={toggleVisualization_age}>Switch Visualization</button>
