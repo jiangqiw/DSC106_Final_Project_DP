@@ -307,7 +307,7 @@
   .reminder {
     bottom: 0;
     font-size: 25px;
-    margin-top: 150px;
+    margin-top: 80px;
     color: black;
     transition: color 0.5s ease; /* Smooth transition for color change */
     animation: blinkAnimation 2s infinite; /* Apply the animation */
@@ -540,8 +540,10 @@
   <div class="background-image" style="background-image: url({currentBackground});"></div>
   <Map bind:geoJsonToFit {index} />
   <Graph {index} {width} {height} {projection} />
-  <p>total progress:<strong>{index + 1}/{count}</strong></p >
-  <progress value={progress || 0}></progress>
+  <div class="progress-bars">
+    <p>total progress:<strong>{index + 1}/{count}</strong></p >
+    <progress value={progress || 0}></progress>
+  </div>
 </div>
 
   <div class="foreground" slot="foreground">
@@ -563,6 +565,9 @@
       </p>
       <div class="reminder">
         Please Full Screen to Gain Maximized Experience
+      </div>
+      <div class="reminder">
+        Please Scroll down to Proceed
       </div>
     </section>
     <section style="font-size: 30px; font-family: 'Georgia', serif;">The Maiden Journey of Dreams and Tragedy</section>
