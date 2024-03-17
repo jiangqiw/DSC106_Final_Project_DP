@@ -856,7 +856,7 @@
     </section>
     
     <section>
-      <p style="font-size: 25px; font-family: 'Georgia', serif;">Many might expect the survival rates solely depended on passengers' wealth and status, while Our visualization, by demonstrating the survival rate within each group, reveals one surprising result: females have the lowest death-rate among all groups. Thus, visualization conveys an idea to everyone that, even among a catastrophe, acts of chivalry and humanity can transcend social and economic divides.
+      <p style="font-size: 25px; font-family: 'Georgia', serif;">Many might expect the survival rates solely depended on passengers' wealth and status, while Our visualization, by demonstrating the survival rate within each group, reveals one surprising result: females have the lowest death-rate among all groups. Thus, the visualization conveys an idea to everyone that, even among a catastrophe, acts of chivalry and humanity can transcend social and economic divides.
       </p>
       <div class = "legend">
         <div class="legend-item">
