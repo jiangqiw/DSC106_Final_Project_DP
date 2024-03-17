@@ -52,8 +52,8 @@
     ];
 
     let pieData_1 = [
-        { value: 57.0, color: 'red' },
-        {value: 43.0, color: "red", opacity: 0.5}
+        { value: 43.0, color: 'red' },
+        {value: 57.0, color: "red", opacity: 0.5}
     ];
 
     let pieData_2 = [
