@@ -155,8 +155,8 @@
   }
 
   let pieData_1 = [
-        { value: 72.7, color: 'blue' },
-        { value: 27.3, color: "orange"}
+        { value: 72.7, color: 'orange' },
+        { value: 27.3, color: "black"}
     ];
     let total_1 = pieData_1.reduce((acc, slice) => acc + slice.value, 0);
     let startAngle_1 = 0;
@@ -180,8 +180,8 @@
     });
 
     let pieData_2 = [
-        { value: 61.9, color: 'blue' },
-        {value: 38.1, color: "orange"}
+        { value: 61.9, color: 'orange' },
+        {value: 38.1, color: "black"}
     ];
 
     let total = pieData_2.reduce((acc, slice) => acc + slice.value, 0);
@@ -201,8 +201,8 @@
     });
 
     let pieData = [
-        { value: 56.0, color: 'blue' },
-        {value: 44.0, color: "orange"}
+        { value: 56.0, color: 'orange' },
+        {value: 44.0, color: "black"}
     ];
 
     pieData.forEach(slice => {
@@ -373,6 +373,10 @@
 
 .dot-orange {
     background-color: orange;
+}
+
+.dot-black {
+    background-color: black;
 }
 
 .dot-red {
@@ -860,10 +864,10 @@
       </p>
       <div class = "legend">
         <div class="legend-item">
-          <span class="dot dot-blue"></span> Blue - [Survived]
+          <span class="dot dot-orange"></span> Orange - [Survived]
         </div>
         <div class="legend-item">
-          <span class="dot dot-orange"></span> Orange - [Dead]
+          <span class="dot dot-black"></span> Black - [Dead]
         </div>
       </div>
       <div class="button-container-2">
