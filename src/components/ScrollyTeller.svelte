@@ -582,15 +582,16 @@
     <section>
       <p></p>
       <p style="padding-top: 80px; font-size: 30px; font-family: 'Georgia', serif; text-align: center;">
-        In the film's breathtaking and haunting finale, Jack's noble and selfless sacrifice for Rose truly embodies the essence of sheer, unparalleled bravery aboard the Titanic, stirring deep, raw, and overwhelming emotions within us. "Oh, what a valiant heart! What a brave soul!" we cry, as tears blur our vision. However, did something like this really happen back in 1912? Our visulization will give us the answer.
+        In the film's breathtaking and haunting finale, Jack's noble and selfless sacrifice for Rose truly embodies the essence of sheer, unparalleled bravery aboard the Titanic, stirring deep, raw, and overwhelming emotions within us. "Oh, what a valiant heart! What a brave soul!" we cry, as tears blur our vision. However, did something like this really happen back in 1912? Our visualization will give us the answer. <a href="https://youtu.be/jdptn_ricsw" title="Project video: ">Project Demo Video</a>.
       </p>
-      <div class="reminder" style = "font-size: 30px">
+      <div class="reminder" style="font-size: 30px">
         Please Full Screen on Your laptop to Gain Maximized Experience
       </div>
       <div class="reminder">
         Please Scroll Down to Proceed
       </div>
     </section>
+    
     <section style="font-size: 30px; font-family: 'Georgia', serif;">The Maiden Journey of Dreams and Tragedy</section>
     <section id="section-1-bg" style="font-size: 30px; font-family: 'Georgia', serif;">
       Many would believe that the survival on the Titanic would be highly correlated with the social class and wealth of the passenger. Is that true back in the tragedic sunk in 1912? Let's find out by looking at the survival rate relating to the passenger's class
