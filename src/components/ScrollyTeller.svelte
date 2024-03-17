@@ -694,6 +694,15 @@
           {/if}
           {#if showCasualtyLegend_fare}
           <div class="legend-item">
+            <span class="dot dot-blue"></span> Blue - [less than 30 survived]
+          </div>
+          <div class="legend-item">
+              <span class="dot dot-red"></span> Red - [30 to 100 survived]
+          </div>
+          <div class="legend-item">
+            <span class="dot dot-green"></span> Green - [greater than 100 survived]
+          </div>
+          <div class="legend-item">
             <span class="dot dot-lightblue"></span> Light Blue - [less than 30 dead]
           </div>
           <div class="legend-item">
