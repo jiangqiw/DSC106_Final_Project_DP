@@ -671,7 +671,7 @@
             <span class="dot dot-lightblue"></span> Light Blue - [less than 30 dead]
           </div>
           <div class="legend-item">
-              <span class="dot dot-lightred"></span> Light Red - [30 yrs to 100 dead]
+              <span class="dot dot-lightred"></span> Light Red - [30 to 100 dead]
           </div>
           <div class="legend-item">
             <span class="dot dot-lightgreen"></span> Light Green - [greater than 100 dead]
