@@ -19,6 +19,10 @@
   let pclassVisualization = 'class1';
   let ageVisualization = 'age';
   let fareVisualization = 'fare';
+  let showNormalLegend_gender = true;
+  let showNormalLegend_pclass = true;
+  let showNormalLegend_age = true;
+  let showNormalLegend_fare = true;
   let showCasualtyLegend_gender = false;
   let showCausaltyLegend_pclass = false;
   let showCasultyLegend_age = false;
@@ -54,10 +58,12 @@
     // If the current visualization is 'gender', switch to 'gender_alive'
     if (pclassVisualization === 'class1') {
         pclassVisualization = 'casualty';
+        showNormalLegend_pclass = false;
         showCausaltyLegend_pclass = true;
     } else {
         // In any other case (including when it's 'gender_alive' or any 'pclass' state), switch back to 'gender'
         pclassVisualization = 'class1';
+        showNormalLegend_pclass = true;
         showCausaltyLegend_pclass = false;
     }
 }
@@ -65,10 +71,12 @@
       // If the current visualization is 'gender', switch to 'gender_alive'
       if (ageVisualization === 'age') {
           ageVisualization = 'casualty';
+          showNormalLegend_age = false;
           showCasultyLegend_age = true;
       } else {
           // In any other case (including when it's 'gender_alive' or any 'pclass' state), switch back to 'gender'
           ageVisualization = 'age';
+          showNormalLegend_age = true;
           showCasultyLegend_age = false;
       }
   }
@@ -77,10 +85,12 @@
       // If the current visualization is 'gender', switch to 'gender_alive'
       if (fareVisualization === 'fare') {
           fareVisualization = 'casualty';
+          showNormalLegend_fare = false;
           showCasualtyLegend_fare = true;
       } else {
           // In any other case (including when it's 'gender_alive' or any 'pclass' state), switch back to 'gender'
           fareVisualization = 'fare';
+          showNormalLegend_fare = true;
           showCasualtyLegend_fare = false;
       }
   }
@@ -90,10 +100,12 @@
     // If the current visualization is 'gender', switch to 'gender_alive'
     if (currentVisualization === 'gender') {
         currentVisualization = 'casualty';
+        showNormalLegend_gender = false;
         showCasualtyLegend_gender = true;
     } else {
         // In any other case (including when it's 'gender_alive' or any 'pclass' state), switch back to 'gender'
         currentVisualization = 'gender';
+        showNormalLegend_gender = true;
         showCasualtyLegend_gender = false;
     }
 }
@@ -338,6 +350,7 @@
     padding: 10px;
     margin-bottom: 0px;
     margin-right: 100px;
+    margin-top: -10px
     /* Add more styling as needed */
 }
 
@@ -601,17 +614,29 @@
         <!-- <button on:click={toggleVisualization}>Go to age report</button> -->
       </div>
       <p></p>
+      
       <div class="legend">
-        <div class="legend-item">
-            <span class="dot dot-blue"></span> Blue - [Class-1 passenger]
-        </div>
-        <div class="legend-item">
-            <span class="dot dot-red"></span> Red - [Class-2 passenger]
-        </div>
-        <div class="legend-item">
-          <span class="dot dot-green"></span> Green - [Class-3 passenger]
-        </div>
+        {#if showNormalLegend_pclass}
+          <div class="legend-item">
+              <span class="dot dot-blue"></span> Blue - [Class-1 passenger]
+          </div>
+          <div class="legend-item">
+              <span class="dot dot-red"></span> Red - [Class-2 passenger]
+          </div>
+          <div class="legend-item">
+            <span class="dot dot-green"></span> Green - [Class-3 passenger]
+          </div>
+        {/if}
         {#if showCausaltyLegend_pclass}
+          <div class="legend-item">
+            <span class="dot dot-blue"></span> Blue - [Class-1 passenger survived]
+          </div>
+          <div class="legend-item">
+              <span class="dot dot-red"></span> Red - [Class-2 passenger survived]
+          </div>
+          <div class="legend-item">
+            <span class="dot dot-green"></span> Green - [Class-3 passenger survived]
+          </div>
           <div class="legend-item">
               <span class="dot dot-lightblue"></span> Light Blue - [Class-1 passenger dead]
           </div>
@@ -657,15 +682,17 @@
         <button class="aesthetic-button-goto" on:click={() => goToSection(4)}>Go to Age</button>
       </div>
         <div class="legend">
-          <div class="legend-item">
-            <span class="dot dot-blue"></span> Blue - [less than 30]
-        </div>
-        <div class="legend-item">
-            <span class="dot dot-red"></span> Red - [30 to 100]
-        </div>
-        <div class="legend-item">
-          <span class="dot dot-green"></span> Green - [greater than 100]
-        </div>
+          {#if showNormalLegend_fare}
+            <div class="legend-item">
+              <span class="dot dot-blue"></span> Blue - [less than 30]
+            </div>
+            <div class="legend-item">
+                <span class="dot dot-red"></span> Red - [30 to 100]
+            </div>
+            <div class="legend-item">
+              <span class="dot dot-green"></span> Green - [greater than 100]
+            </div>
+          {/if}
           {#if showCasualtyLegend_fare}
           <div class="legend-item">
             <span class="dot dot-lightblue"></span> Light Blue - [less than 30 dead]
@@ -688,12 +715,15 @@
 
       </div>
     </section>
-    <section id="section-3-bg" style="font-size: 30px; font-family: 'Georgia', serif;">
-      Despite features relating to the wealth and status, are there any feature that could impact the chance of survival? We first make a intuitive assumption that male and young adults, with greater strength, should have greater chance of survival. Let's test our assumptions!
-      <div class="reminder">
+    <section id="section-3-bg" style="font-size: 30px; font-family: 'Georgia', serif; display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100%;">
+      <div class="content-container" style="margin-top: 150px;">
+        Despite features relating to the wealth and status, are there any features that could impact the chance of survival? We first make an intuitive assumption that male and young adults, with greater strength, should have a greater chance of survival. Let's test our assumptions!
+      </div>
+      <div class="reminder-container" style="margin-top: 20px;">
         ↓ Scroll Down to View Result ↓
       </div>
     </section>
+
     <section id="section-3">
       <div class="reminder1">
         ↓The Switch Visualization Button shows the survival rates in this group. And you can jump to other reports using other Go to buttons.↓
@@ -711,13 +741,21 @@
       </div>
       <p></p>
       <div class="legend">
-        <div class="legend-item">
-            <span class="dot dot-blue"></span> Blue - [Male]
-        </div>
-        <div class="legend-item">
-            <span class="dot dot-red"></span> Red - [Female]
-        </div>
+        {#if showNormalLegend_gender}
+          <div class="legend-item">
+              <span class="dot dot-blue"></span> Blue - [Male]
+          </div>
+          <div class="legend-item">
+              <span class="dot dot-red"></span> Red - [Female]
+          </div>
+        {/if}
         {#if showCasualtyLegend_gender}
+          <div class="legend-item">
+            <span class="dot dot-blue"></span> Blue - [Male survived]
+          </div>
+          <div class="legend-item">
+              <span class="dot dot-red"></span> Red - [Female survived]
+          </div>
           <div class="legend-item">
               <span class="dot dot-lightblue"></span> Light Blue - [Male dead]
           </div>
@@ -763,25 +801,36 @@
         <!-- <button on:click={toggleVisualization}>Go to age report</button> -->
       </div>
       <div class="legend">
-        <div class="legend-item">
-            <span class="dot dot-blue"></span> Blue - [less than 15 yrs]
-        </div>
-        <div class="legend-item">
-            <span class="dot dot-red"></span> Red - [15 yrs to 40 yrs]
-        </div>
-        <div class="legend-item">
-          <span class="dot dot-green"></span> Green - [greater than 40 yrs]
-        </div>
+        {#if showNormalLegend_age}
+          <div class="legend-item">
+              <span class="dot dot-blue"></span> Blue - [less than 15 yrs]
+          </div>
+          <div class="legend-item">
+              <span class="dot dot-red"></span> Red - [15 yrs to 40 yrs]
+          </div>
+          <div class="legend-item">
+            <span class="dot dot-green"></span> Green - [greater than 40 yrs]
+          </div>
+        {/if}
         {#if showCasultyLegend_age}
         <div class="legend-item">
+          <span class="dot dot-blue"></span> Blue - [less than 15 yrs survived]
+        </div>
+        <div class="legend-item">
+            <span class="dot dot-red"></span> Red - [15 yrs to 40 yrs survived]
+        </div>
+        <div class="legend-item">
+          <span class="dot dot-green"></span> Green - [greater than 40 yrs survived]
+        </div>
+        <div class="legend-item">
           <span class="dot dot-lightblue"></span> Light Blue - [less than 15 yrs dead]
-      </div>
-      <div class="legend-item">
-          <span class="dot dot-lightred"></span> Light Red - [15 yrs to 40 yrs dead]
-      </div>
-      <div class="legend-item">
-        <span class="dot dot-lightgreen"></span> Light Green - [greater than 40 yrs dead]
-    </div>
+        </div>
+        <div class="legend-item">
+            <span class="dot dot-lightred"></span> Light Red - [15 yrs to 40 yrs dead]
+        </div>
+        <div class="legend-item">
+          <span class="dot dot-lightgreen"></span> Light Green - [greater than 40 yrs dead]
+        </div>
         {/if}
       </div>
       <div class="visualization-container">
