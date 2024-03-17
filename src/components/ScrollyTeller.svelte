@@ -855,7 +855,7 @@
     </section>
     
     <section>
-      <p style="font-size: 25px; font-family: 'Georgia', serif;">Remarkably, the story that unfolds is one of women and children from all walks of life, defying the cruel hand of fate. Thus, amidst the Titanic's tragedy, a tale of courage and sacrifice takes shape, reminding us that in the darkest of times, humanity's light shines brightest, bridging divides of wealth and class with acts of sheer bravery and compassion.
+      <p style="font-size: 25px; font-family: 'Georgia', serif;">Many might expect the survival rates solely depended on passengers' wealth and status, while Our visualization, by demonstrating the survival rate within each group, reveals one surprising result: females have the lowest death-rate among all groups. Thus, visualization conveys an idea to everyone that, even among a catastrophe, acts of chivalry and humanity can transcend social and economic divides.
       </p>
       <div class = "legend">
         <div class="legend-item">
