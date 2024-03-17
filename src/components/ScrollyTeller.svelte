@@ -350,7 +350,6 @@
     padding: 10px;
     margin-bottom: 0px;
     margin-right: 100px;
-    margin-top: -10px
     /* Add more styling as needed */
 }
 
@@ -715,11 +714,9 @@
 
       </div>
     </section>
-    <section id="section-3-bg" style="font-size: 30px; font-family: 'Georgia', serif; display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100%;">
-      <div class="content-container" style="margin-top: 150px;">
-        Despite features relating to the wealth and status, are there any features that could impact the chance of survival? We first make an intuitive assumption that male and young adults, with greater strength, should have a greater chance of survival. Let's test our assumptions!
-      </div>
-      <div class="reminder-container" style="margin-top: 20px;">
+    <section id="section-3-bg" style="font-size: 30px; font-family: 'Georgia', serif; margin-top: 150px;">
+      Despite features relating to the wealth and status, are there any feature that could impact the chance of survival? We first make a intuitive assumption that male and young adults, with greater strength, should have greater chance of survival. Let's test our assumptions!
+      <div class="reminder">
         ↓ Scroll Down to View Result ↓
       </div>
     </section>
