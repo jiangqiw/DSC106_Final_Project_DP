@@ -725,7 +725,7 @@
       </div>
     </section>
     <section id="section-3-bg" style="font-size: 30px; font-family: 'Georgia', serif; margin-top: 150px;">
-      Despite features relating to the wealth and status, are there any feature that could impact the chance of survival? We first make a intuitive assumption that male and young adults, with greater strength, should have greater chance of survival. Let's test our assumptions!
+      Despite features relating to the wealth and status, are there any feature that could impact the chance of survival? We first make an intuitive assumption that male and young adults, with greater strength, should have greater chance of survival. Let's test our assumptions!
       <div class="reminder">
         ↓ Scroll Down to View Result ↓
       </div>
